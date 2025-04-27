@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>GeoPulse | Weather Dashboard</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GeoPulse | Subscribe Mails!</title>
+    <!--Fonts-->
+    <!--==-------=++++++++-->
+    <base href="/images/">
+    <link rel="shortcut icon" rel="preload" href="logo2.png" type="image/x-icon">    
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <link rel="stylesheet" href="https://unpkg.com/sheryjs/dist/Shery.css" /> <!-- Recommended -->
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.css">
+    <script src="/scripts/dark-n-light-mode.js" defer></script>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@500&family=Montserrat:wght@900&family=Roboto+Slab:wght@500&display=swap');
+      /*tmp*/
+      /* @import url('https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Montserrat&family=Oswald:wght@300&display=swap'); */
+      :root{
+    --main-background-color:rgba(255, 255, 255, 0.56);
+    --main-content-color:rgba( 255, 255, 255, 0.25 );
+    --border-content:rgb(255, 255, 255) solid 4px;
+    --body-color-:#7a8d9d;
+    --section-box-shadow:-3px 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+}
+.d-n-l-mode{
+    /* color-scheme: dark; */
+    --main-background-color:rgba(255, 255, 255, 0.56);
+    --main-content-color:rgba(255, 255, 255, 0.25);
+    --border-content:rgb(255, 255, 255) solid 5px;
+    --body-color-:#281f3b; 
+    --section-box-shadow:-3px 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+}
+
+        body{
+            background-color:var(--body-color-);
+        }
+*{
+    margin: 0;
+    padding:0;
+    box-sizing: border-box;
+}
+/*Mandatories*/
+li{
+    list-style: none;
+}
+img,a,span,input,button{
+    display: block;
+}
+a{
+    color: inherit;
+    text-decoration: none;
+}
+input,button{
+    background: none;
+    border: none;
+}
+input{
+    width: 100%;
+}
+button{
+    cursor: pointer;
+}
+sub{
+    vertical-align: baseline;
+}
+sup{
+    vertical-align: top;
+}
+sub,sup{
+    font-size: 0.75rem;
+}
+
+html{
+    font-size: 1rem;
+}
+/*---------*/
+html,body{
+    height: 100%;
+    width: 100%;
+    font-family: 'Roboto Slab', serif;
+    
+  }
+h2,h3{
+    font-family: 'Montserrat','sans-serif';
+}  
+h1{
+    font-family: 'Montserrat','sans-serif';
+    font-size:2.3vw;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+  }
+.main-website-container{
+  padding: 0.9rem;
+    padding-top: 4.5rem;
+     /* position: relative */
+}
+
+/*Nav----------------------------*/
+nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+nav ul,button{
+  color: white;
+}
+nav .logo h4{
+    font-size: 2rem;
+    background-image: url('cloud.jpg');
+    background-repeat: no-repeat;
+    /* background-position: center; */
+    background-clip: text;
+    color: transparent;
+    /* animation: animateBackground 10s ease infinite alternate; */
+    text-shadow:-1px -2px white;
+  }
+  
+  /* @keyframes animateBackground {
+    0%{
+      background-position: 30% 0;
+    }
+    100%{
+      background-position: 60% 0;
+    }
+  } */
+  nav button{
+    cursor: pointer;
+    background-color: var(--body-color-);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.3rem;
+  }
+.logo{
+  border:white 1px solid;
+  padding: 0.2rem 1rem 0.2rem 1rem;
+  border-radius: 2rem;
+  background-color: var(--body-color-);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  animation: roll-in-left .5s forwards ease;
+}
+
+@keyframes roll-in-left {
+  0% {
+    -webkit-transform: translateX(-800px) rotate(-540deg);
+    transform: translateX(-800px) rotate(-540deg);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateX(0) rotate(0deg);
+    transform: translateX(0) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+/* @keyframes slide-bck-tl {
+  0% {
+    -webkit-transform: translateZ(0) translateY(0) translateX(0);
+    transform: translateZ(0) translateY(0) translateX(0);
+  }
+  100% {
+    -webkit-transform: translateZ(-400px) translateY(-200px) translateX(-200px);
+    transform: translateZ(-400px) translateY(-200px) translateX(-200px);
+  }
+  }
+  */
+  .logo img{
+    height:3rem;
+    width: 3rem;
+    object-fit: contain;
+  }
+  nav ul{
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+nav ul,button{
+    padding:0.7rem;
+    border-radius: 1.7rem;
+    background-color:var(--body-color-);
+    border: rgb(255, 255, 255) solid 0.5px ;
+}
+nav ul li{
+  text-decoration: none;
+  list-style: none;
+  position: relative;
+    padding: 0.2rem;
+    cursor: pointer;
+  }
+ /* Common styles for both hover and non-hover states */
+nav ul li::after {
+  content: '';
+  height: 0%;
+  border-radius: 1rem;
+  position: absolute;
+  bottom: 0;
+  display: block;
+  justify-content: center;
+  border: rgb(255, 255, 255) solid 1px;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+  transition: width 0.5s ease;
+}
+
+/* Hover state animation */
+nav ul li:hover::after {
+  animation: underlineAfter 0.5s forwards ease-in-out;
+}
+
+/* Non-hover state animation */
+nav ul li:not(:hover)::after {
+  animation: reverseUnderlineAfter 0.5s forwards ease-in-out;
+}
+
+/* Keyframes with only what's changing */
+@keyframes underlineAfter {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 90%;
+  }
+}
+
+@keyframes reverseUnderlineAfter {
+  0% {
+    width: 90%;
+  }
+  100% {
+    width: 0%;
+    display: none;
+  }
+}
+    main nav{
+  font-family: 'Alegreya Sans SC', sans-serif;
+  position: fixed;
+  left: 0;
+    top:0;
+    width: 100%;
+    height: 10vh;
+    background:  rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 4px );
+    -webkit-backdrop-filter: blur( 4px );
+    border-bottom-left-radius: 0.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    z-index: 100000;
+    border-bottom-right-radius: 0.5rem;
+  }
+  
+  .visible{
+  display: none;
+}
+
+.hamburger-menu {
+  display: none; /* hide the hamburger menu by default */
+  cursor: pointer;
+  color: white;
+  font-size: 2rem;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+.hamburger-menu span {
+    width: 3rem;
+    border-radius: 0.3rem;
+    height: 0.25rem;
+    background-color: white;
+    margin: 0.4rem 0;
+}
+
+.subscription-box {
+    min-height: 40vh;
+    position: absolute;
+    top: 35%;
+    left: 28%;
+    background-color: var(--main-background-color);
+    padding: 2rem;
+    border: var(--border-content);
+    box-shadow: var(--section-box-shadow);
+    border-radius: 10px;
+    text-align: center;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .subscription-box h1 {
+    color: rgb(51, 51, 51);
+  }
+
+  .subscription-box form {
+    margin-top: 1rem;
+  }
+
+  .subscription-box input[type='email'] {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: none;
+    border-radius: 5px;
+    border: 1px solid black;
+    cursor: pointer;
+    cursor: pointer;
+  }
+ 
+  .subscription-box input[type='submit'] {
+    background: var(--body-color-);
+    position: relative;
+    left: 23%;
+    width: 50%;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #fff;
+    box-shadow:var(--section-box-shadow);
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+  }
+  
+  .subscription-box input[type='submit']:hover {
+    background-color: #244159;
+  }
+  
+@keyframes animate {
+    0%{
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+        border-radius: 0;
+    }
+    100%{
+        transform: translateY(-1000px) rotate(720deg);
+        opacity: 0;
+        border-radius: 50%;
+    }
+}
+/* Bg animate */
+@keyframes animate {
+    0%{
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+        border-radius: 0;
+    }
+    100%{
+        transform: translateY(-1000px) rotate(720deg);
+        opacity: 0;
+        border-radius: 50%;
+    }
+}
+
+.background {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    /* background: #4e54c8; */
+    overflow: hidden;
+}
+.background li {
+    position: absolute;
+    display: block;
+    list-style: none;
+    width: 20px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    animation: animate 11s linear infinite;
+}
+
+.background li:nth-child(0) {
+    left: 24%;
+    width: 108px;
+    height: 108px;
+    bottom: -108px;
+    animation-delay: 1s;
+}
+.background li:nth-child(1) {
+    left: 27%;
+    width: 169px;
+    height: 169px;
+    bottom: -169px;
+    animation-delay: 3s;
+}
+.background li:nth-child(2) {
+    left: 71%;
+    width: 165px;
+    height: 165px;
+    bottom: -165px;
+    animation-delay: 5s;
+}
+.background li:nth-child(3) {
+    left: 50%;
+    width: 130px;
+    height: 130px;
+    bottom: -130px;
+    animation-delay: 10s;
+}
+.background li:nth-child(4) {
+    left: 61%;
+    width: 150px;
+    height: 150px;
+    bottom: -150px;
+    animation-delay: 11s;
+}
+.background li:nth-child(5) {
+    left: 17%;
+    width: 125px;
+    height: 125px;
+    bottom: -125px;
+    animation-delay: 13s;
+}
+.background li:nth-child(6) {
+    left: 6%;
+    width: 129px;
+    height: 129px;
+    bottom: -129px;
+    animation-delay: 2s;
+}
+.background li:nth-child(7) {
+    left: 24%;
+    width: 153px;
+    height: 153px;
+    bottom: -153px;
+    animation-delay: 23s;
+}
+.background li:nth-child(8) {
+    left: 36%;
+    width: 118px;
+    height: 118px;
+    bottom: -118px;
+    animation-delay: 27s;
+}
+.background li:nth-child(9) {
+    left: 7%;
+    width: 160px;
+    height: 160px;
+    bottom: -160px;
+    animation-delay: 21s;
+}
+.background li:nth-child(10) {
+    left: 51%;
+    width: 137px;
+    height: 137px;
+    bottom: -137px;
+    animation-delay: 30s;
+}
+.background li:nth-child(11) {
+    left: 29%;
+    width: 126px;
+    height: 126px;
+    bottom: -126px;
+    animation-delay: 48s;
+}
+.background li:nth-child(12) {
+    left: 28%;
+    width: 134px;
+    height: 134px;
+    bottom: -134px;
+    animation-delay: 38s;
+}
+.background li:nth-child(13) {
+    left: 71%;
+    width: 125px;
+    height: 125px;
+    bottom: -125px;
+    animation-delay: 63s;
+}
+.background li:nth-child(14) {
+    left: 48%;
+    width: 155px;
+    height: 155px;
+    bottom: -155px;
+    animation-delay: 21s;
+}
+.background li:nth-child(15) {
+    left: 0%;
+    width: 113px;
+    height: 113px;
+    bottom: -113px;
+    animation-delay: 43s;
+}
+.background li:nth-child(16) {
+  left: 68%;
+    width: 154px;
+    height: 154px;
+    bottom: -154px;
+    animation-delay: 13s;
+  }
+  /* For mobile phones: */
+  /* New media queries /*/
+  @media (max-width: 768px) { 
+         /* devices with a maximum width of 768px (medium-sized devices)*/
+         
+         .main-website-container{
+          padding: 0;
+         }
+    nav{
+      
+      justify-content:start;
+      gap: 1rem;
+    }
+    nav a{
+      flex-direction: column;
+    }
+  
+    nav ul {
+        z-index: -1;
+      display: none;
+      flex-direction: column;
+      align-items:flex-end;
+      border-top: none;
+      border-radius: 0.5rem;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+      border-bottom-left-radius: 0.5rem;
+      border-bottom-right-radius: 0.5rem;
+      position: absolute;
+      top: 4.2rem;
+      left: 0;
+      width: 100%;
+      height: auto;
+      padding: 1rem 0;
+      padding-right: 3rem;
+      background-color: var(--body-color-);
+    }
+  
+    nav ul li {
+      padding: 0.5rem;
+      background-color: rgba(84, 84, 84, 0.1);
+      border-radius: 1rem;
+      box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+      }
+    
+    
+    nav ul li:hover {
+      background-color:var(--body-color-);
+    }
+  
+    .hamburger-menu {
+      display: flex;
+      display: block;
+    }
+        }
+  @media (max-width:768px) {
+    .subscription-box{
+      left: 5%;
+      width: 90%;
+    }
+    h1{
+      font-size: 1.5rem;
+    }
+  }
+  @media (max-width:1023px){
+    .hide-on-small {
+    display: none;
+  }
+
+  }
+</style>
+</head>
+<body>
+  
+  <ul class="background" >
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+ </ul>
+    <main class="main-website-container">
+        <header>
+          <nav>
+            <div class="logo">
+              <img src="logo2.png" alt="" srcset="">
+                    <h4>GeoPulse</h4>
+                </div>
+                
+                <div class="ul-div">
+                    <ul >
+                      <a onclick="location.href='/'"><li>weather dashboard</li></a>
+                      <a onclick="location.href='/interest-and-news'" class="hide-on-small"><li>interests and news</li></a>
+                      <a onclick="location.href='/about-us'" class="hide-on-small"><li>about us</li></a>
+                      <%if(!(session.loggedIn || session.signedUp)){%>
+                      <a onclick="location.href='/signup-or-login'" target="_blank"><li>signup/login</li></a>
+                      <%}%>
+                      <a onclick="location.href='/subscribe-mails'"><li>subscribe</li></a>
+                </ul>
+            </div>
+            <div class="button-for-modes">
+                <button onclick="dark()">
+                    <!-- <h4></h4> -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="1.8em" viewBox="0 0 256 258"><defs><radialGradient id="logosGoogleBardIcon0" cx="78.302%" cy="55.52%" r="78.115%" fx="78.302%" fy="55.52%" gradientTransform="scale(.99947 1)rotate(78.858 .783 .555)"><stop offset="0%" stop-color="#1ba1e3"/><stop offset=".01%" stop-color="#1ba1e3"/><stop offset="30.022%" stop-color="#5489d6"/><stop offset="54.552%" stop-color="#9b72cb"/><stop offset="82.537%" stop-color="#d96570"/><stop offset="100%" stop-color="#f49c46"/></radialGradient><radialGradient id="logosGoogleBardIcon1" cx="-3.409%" cy="-54.219%" r="169.363%" fx="-3.409%" fy="-54.219%" gradientTransform="matrix(.19314 .98115 -.98062 .19324 -.559 -.404)"><stop offset="0%" stop-color="#1ba1e3"/><stop offset=".01%" stop-color="#1ba1e3"/><stop offset="30.022%" stop-color="#5489d6"/><stop offset="54.552%" stop-color="#9b72cb"/><stop offset="82.537%" stop-color="#d96570"/><stop offset="100%" stop-color="#f49c46"/></radialGradient></defs><path fill="url(#logosGoogleBardIcon0)" d="m122.062 172.77l-10.27 23.52c-3.947 9.042-16.459 9.042-20.406 0l-10.27-23.52c-9.14-20.933-25.59-37.595-46.108-46.703L6.74 113.52c-8.987-3.99-8.987-17.064 0-21.053l27.385-12.156C55.172 70.97 71.917 53.69 80.9 32.043L91.303 6.977c3.86-9.303 16.712-9.303 20.573 0l10.403 25.066c8.983 21.646 25.728 38.926 46.775 48.268l27.384 12.156c8.987 3.99 8.987 17.063 0 21.053l-28.267 12.547c-20.52 9.108-36.97 25.77-46.109 46.703"/><path fill="url(#logosGoogleBardIcon1)" d="m217.5 246.937l-2.888 6.62c-2.114 4.845-8.824 4.845-10.937 0l-2.889-6.62c-5.148-11.803-14.42-21.2-25.992-26.34l-8.898-3.954c-4.811-2.137-4.811-9.131 0-11.269l8.4-3.733c11.87-5.273 21.308-15.017 26.368-27.22l2.966-7.154c2.067-4.985 8.96-4.985 11.027 0l2.966 7.153c5.06 12.204 14.499 21.948 26.368 27.221l8.4 3.733c4.812 2.138 4.812 9.132 0 11.27l-8.898 3.953c-11.571 5.14-20.844 14.537-25.992 26.34"/></svg>
+                  </button>
+                </div>
+            <div class="hamburger-menu">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+        </nav>
+    </header>
+ 
+            <div class="weather-container">
+              <div class="subscription-box">
+                <!--
+                  Bg animate
+                -->
+                
+                <h1>Subscribe to Our Weather Alerts</h1>
+                
+                <form action="/apply-subscribe" method="POST">
+                  <%if(session.signedUp|| session.loggedIn){%>
+                  <%if(message){%>
+                    <small style="color: #244159;"><%=message%></small>
+                  <%}%>
+                  <%}else{%>
+                    <small style="color: red;"><%=errormessage%></small>
+                  <%}%>
+                  <input type="email" name="email" placeholder="Enter your email" required>
+                  <input type="submit" value="Subscribe">
+              </form>
+              <!-- <form action="#">
+                  <input type="email" placeholder="Enter your email" required>
+                  <input type="submit" value="Subscribe">
+                </form> -->
+              </div>
+              </div>
+              </main>
+            </body>
+            
+            </div>
+                </main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<!--Here-->
+
+<!-- Scroll Trigger is needed for Scroll Effects -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+<!-- Three.js is needed for 3d Effects -->
+<!--next-->
+<script src="/scripts/three.min.js"></script>
+
+<!-- ControlKit is needed for Debug Panel -->
+<!-- <script src="controlKit.min.js"></script> -->
+
+<script src="https://cdn.jsdelivr.net/gh/automat/controlkit.js@master/bin/controlKit.min.js"></script>
+
+<!--end of shery js-->
+
+
+  
+    <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.min.js"></script>
+   
+  <!--Recommended-->  <script  type="text/javascript"  src="https://unpkg.com/sheryjs/dist/Shery.js"></script> <!-- Recommended -->
+    
+    <script>
+     
+    Shery.mouseFollower({
+  //Parameters are optional.
+        skew: true,
+        ease: "cubic-bezier(0.23, 1, 0.320, 1)",
+        duration: 1,
+});
+
+
+const hamburger = document.querySelector('.hamburger-menu');
+const links = document.querySelector('nav ul');
+
+// Toggle the visibility of the navigation links when the hamburger menu is clicked
+hamburger.addEventListener('click', (e) => {
+
+  links.style.display = links.style.display === 'flex' ? 'none' : 'flex'
+});
+// const emailInput = document.getElementById('email-input');
+//   emailInput.addEventListener('click', () => {
+//     emailInput.focus();
+//   });
+</script>
+            </body>
+</html>

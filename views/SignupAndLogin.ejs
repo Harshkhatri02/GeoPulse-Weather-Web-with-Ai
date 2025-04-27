@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GeoPulse | Signup And Login</title>
+    <link rel="shortcut icon" href="/images/logo2.png" type="image/x-icon">
+
+
+<style>
+      @import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@500&family=Montserrat:wght@900&family=Roboto+Slab:wght@500&display=swap');
+
+        :root{
+  --input-focus: #2d8cf0;
+  --font-color: #323232;
+  --font-color-sub: #666;
+  --bg-color: #fff;
+  --bg-color-alt: #666;
+  --main-color: #323232;
+
+
+  --main-background-color:rgba(255, 255, 255, 0.56);
+            --main-content-color:rgba( 255, 255, 255, 0.25 );
+    --border-content:rgb(255, 255, 255) solid 4px;
+    --body-color-:#7a8d9d;
+    --section-box-shadow:-3px 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+}
+
+*{
+    margin: 0;
+    padding:0;
+    box-sizing: border-box;
+
+}
+html,body{
+    height: 100%;
+    width: 100%;
+    font-family: 'Roboto Slab', serif;
+}
+body{
+  background-color: var(--body-color-);
+}
+h2,h3{
+    
+    font-family: 'Montserrat','sans-serif';
+}  
+h1{
+    font-family: 'Montserrat','sans-serif';
+    font-size:2.3vw;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+.wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* switch card */
+.switch {
+  transform: translateY(85px);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  width: 50px;
+  height: 20px;
+}
+
+.card-side::before {
+    position: absolute;
+    content: 'Log in';
+    left: -70px;
+    top: 0;
+    width: 100px;
+    text-decoration: underline;
+    color: var(--font-color);
+  font-weight: 600;
+}
+
+.card-side::after {
+    position: absolute;
+    content: 'Sign up';
+    left: 70px;
+    top: 0;
+    width: 100px;
+    text-decoration: none;
+    color: var(--font-color);
+    font-weight: 600;
+}
+
+.toggle {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    box-sizing: border-box;
+    border-radius: 1rem;
+    border: 2px solid var(--main-color);
+    box-shadow: 2px 2px var(--main-color);
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--bg-colorcolor);
+  transition: 0.3s;
+}
+
+.slider:before {
+  box-sizing: border-box;
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  border: 2px solid var(--main-color);
+  border-radius: 1rem;
+  left: -2px;
+  bottom: 2px;
+  background-color: var(--bg-color);
+  box-shadow: 0 3px 0 var(--main-color);
+  transition: 0.3s;
+}
+
+.toggle:checked + .slider {
+  background-color: var(--input-focus);
+}
+
+.toggle:checked + .slider:before {
+  transform: translateX(30px);
+}
+
+.toggle:checked ~ .card-side:before {
+  text-decoration: none;
+}
+
+.toggle:checked ~ .card-side:after {
+  text-decoration: underline;
+}
+
+/* card */ 
+
+.flip-card__inner {
+  width: 300px;
+  height: 350px;
+  position: relative;
+  background-color: transparent;
+  perspective: 1000px;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.toggle:checked ~ .flip-card__inner {
+  transform: rotateY(180deg);
+}
+
+.toggle:checked ~ .flip-card__front {
+  box-shadow: none;
+}
+
+.flip-card__front, .flip-card__back {
+  padding: 20px;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  background: lightgrey; 
+  gap: 20px;
+  border-radius: 1rem;
+  border: 2px solid var(--main-color);
+  box-shadow: 4px 4px var(--main-color);
+}
+
+.flip-card__back {
+  width: 100%;
+  transform: rotateY(180deg);
+}
+
+.flip-card__form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.title {
+  margin: 20px 0 20px 0;
+  font-size: 25px;
+  font-weight: 900;
+  text-align: center;
+  color: var(--main-color);
+}
+
+.flip-card__input {
+  width: 250px;
+  height: 40px;
+  border-radius: 2rem;
+  border: 2px solid var(--main-color);
+  background-color: var(--bg-color);
+  box-shadow: 2px 2px var(--main-color);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--font-color);
+  padding: 5px 10px;
+  padding: 5px 14px 5px 14px;
+  outline: none;
+}
+
+.flip-card__input::placeholder {
+  color: var(--font-color-sub);
+  opacity: 0.8;
+}
+
+.flip-card__input:focus {
+  border: 2px solid var(--input-focus);
+}
+
+.flip-card__btn:active, .button-confirm:active {
+  box-shadow: 0px 0px var(--main-color);
+  transform: translate(3px, 3px);
+}
+
+.flip-card__btn {
+  margin: 20px 0 20px 0;
+  width: 120px;
+  height: 40px;
+  border-radius: 1rem;
+  border: 2px solid var(--main-color);
+  background-color: var(--bg-color);
+  box-shadow: 2px 2px var(--main-color);
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--font-color);
+  cursor: pointer;
+}
+/* Bg animate */
+@keyframes animate {
+    0%{
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+        border-radius: 0;
+    }
+    100%{
+        transform: translateY(-1000px) rotate(720deg);
+        opacity: 0;
+        border-radius: 50%;
+    }
+}
+
+@keyframes animate {
+    0%{
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+        border-radius: 0;
+    }
+    100%{
+        transform: translateY(-1000px) rotate(720deg);
+        opacity: 0;
+        border-radius: 50%;
+    }
+}
+
+.background {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    /* background: #4e54c8; */
+    overflow: hidden;
+}
+.background li {
+    position: absolute;
+    display: block;
+    list-style: none;
+    width: 20px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    animation: animate 11s linear infinite;
+}
+
+.background li:nth-child(0) {
+    left: 24%;
+    width: 108px;
+    height: 108px;
+    bottom: -108px;
+    animation-delay: 1s;
+}
+.background li:nth-child(1) {
+    left: 27%;
+    width: 169px;
+    height: 169px;
+    bottom: -169px;
+    animation-delay: 3s;
+}
+.background li:nth-child(2) {
+    left: 71%;
+    width: 165px;
+    height: 165px;
+    bottom: -165px;
+    animation-delay: 5s;
+}
+.background li:nth-child(3) {
+    left: 50%;
+    width: 130px;
+    height: 130px;
+    bottom: -130px;
+    animation-delay: 10s;
+}
+.background li:nth-child(4) {
+    left: 61%;
+    width: 150px;
+    height: 150px;
+    bottom: -150px;
+    animation-delay: 11s;
+}
+.background li:nth-child(5) {
+    left: 17%;
+    width: 125px;
+    height: 125px;
+    bottom: -125px;
+    animation-delay: 13s;
+}
+.background li:nth-child(6) {
+    left: 6%;
+    width: 129px;
+    height: 129px;
+    bottom: -129px;
+    animation-delay: 2s;
+}
+.background li:nth-child(7) {
+    left: 24%;
+    width: 153px;
+    height: 153px;
+    bottom: -153px;
+    animation-delay: 23s;
+}
+.background li:nth-child(8) {
+    left: 36%;
+    width: 118px;
+    height: 118px;
+    bottom: -118px;
+    animation-delay: 27s;
+}
+.background li:nth-child(9) {
+    left: 7%;
+    width: 160px;
+    height: 160px;
+    bottom: -160px;
+    animation-delay: 21s;
+}
+.background li:nth-child(10) {
+    left: 51%;
+    width: 137px;
+    height: 137px;
+    bottom: -137px;
+    animation-delay: 30s;
+}
+.background li:nth-child(11) {
+    left: 29%;
+    width: 126px;
+    height: 126px;
+    bottom: -126px;
+    animation-delay: 48s;
+}
+.background li:nth-child(12) {
+    left: 28%;
+    width: 134px;
+    height: 134px;
+    bottom: -134px;
+    animation-delay: 38s;
+}
+.background li:nth-child(13) {
+    left: 71%;
+    width: 125px;
+    height: 125px;
+    bottom: -125px;
+    animation-delay: 63s;
+}
+.background li:nth-child(14) {
+    left: 48%;
+    width: 155px;
+    height: 155px;
+    bottom: -155px;
+    animation-delay: 21s;
+}
+.background li:nth-child(15) {
+    left: 0%;
+    width: 113px;
+    height: 113px;
+    bottom: -113px;
+    animation-delay: 43s;
+}
+.background li:nth-child(16) {
+    left: 68%;
+    width: 154px;
+    height: 154px;
+    bottom: -154px;
+    animation-delay: 13s;
+}
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+      <!--
+        Background animate
+      -->
+
+      <ul class="background">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+     </ul>
+        <div class="card-switch">
+            <label class="switch">
+               <input type="checkbox" class="toggle">
+               <span class="slider"></span>
+               <span class="card-side"></span>
+               <div class="flip-card__inner">
+                  <div class="flip-card__front">
+                    <% if (error) { %>
+                      <div class="title">Log in<br> <small style="color: red;font-size: 1rem;"><%=error%></small></div>
+                  <% } else { %>
+                      <div class="title">Log in</div>
+                  <% } %>
+                  
+                     <form class="flip-card__form" action="/login" method="post">
+                      <input class="flip-card__input" name="email" placeholder="Email" type="email" required>
+                      <input class="flip-card__input" name="password" placeholder="Password" type="password" required>
+                      <button class="flip-card__btn" type="submit">Let's go!</button>
+                  </form>                  
+                     
+                     <!-- <form class="flip-card__form" action="">
+                        <input class="flip-card__input" name="email" placeholder="Email" type="email">
+                        <input class="flip-card__input" name="password" placeholder="Password" type="password">
+                        <button class="flip-card__btn">Let`s go!</button>
+                     </form> -->
+                  </div>
+                  <div class="flip-card__back">
+                     <div class="title">Sign up</div>
+                    <form class="flip-card__form" action="/signup" method="post">
+                      <input class="flip-card__input" name="name" placeholder="Name" type="text" required>
+                      <input class="flip-card__input" name="email" placeholder="Email" type="email" required>
+                      <input class="flip-card__input" name="password" placeholder="Password" type="password" required>
+                      <button class="flip-card__btn" type="submit">Confirm!</button>
+                  </form>
+                  
+                     <!-- <form class="flip-card__form" action="/signup" method="post">
+                        <input class="flip-card__input" placeholder="Name" type="name">
+                        <input class="flip-card__input" name="email" placeholder="Email" type="email">
+                        <input class="flip-card__input" name="password" placeholder="Password" type="password">
+                        <button class="flip-card__btn">Confirm!</button>
+                     </form> -->
+                  </div>
+               </div>
+            </label>
+        </div>   
+   </div>
+</body>
+</html>

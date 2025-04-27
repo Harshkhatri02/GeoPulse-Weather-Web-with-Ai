@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+    <title>
+      <% if (session.loggedIn || session.signedUp) { %>
+        Welcome <%=name%> To GeoPulse ! | Weather Dashboard
+    <% } else { %>
+      GeoPulse | Weather Dashboard
+    <% } %>
+    </title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="/weatherDashboardImg/">
+  
+    <link rel="icon" rel="preload" href="logo2.webp" type="image/webp">    
+    <link rel="stylesheet" href="https://unpkg.com/sheryjs/dist/Shery.css" /> <!-- Recommended -->
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.css">
+    <script src="/scripts/dark-n-light-mode.js"></script>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@500&family=Montserrat:wght@900&family=Roboto+Slab:wght@500&display=swap');
+ 
+:root{
+    --main-background-color:rgba(255, 255, 255, 0.56);
+    --main-content-color:rgba( 255, 255, 255, 0.25 );
+    --border-content:rgb(255, 255, 255) solid 4px;
+    --body-color-:#7a8d9d;
+    --section-box-shadow:-3px 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+}
+.d-n-l-mode{
+    --body-color-:#281f3b;
+    --border-content:rgb(255, 255, 255) solid 5px;
+}
+
+        body{
+            background-color:var(--body-color-);
+        }
+*{
+  font-display: swap;
+
+    margin: 0;
+    padding:0;
+    box-sizing: border-box;
+}
+/*Mandatories*/
+li{
+    list-style: none;
+}
+img,a,span,input,button{
+    display: block;
+}
+a{
+    color: inherit;
+    text-decoration: none;
+}
+input,button{
+    background: none;
+    border: none;
+}
+input{
+    width: 100%;
+}
+button{
+    cursor: pointer;
+}
+sub{
+    vertical-align: baseline;
+}
+sup{
+    vertical-align: top;
+}
+sub,sup{
+    font-size: 0.75rem;
+}
+
+html{
+    font-size: 1rem;
+}
+/*---------*/
+html,body{
+    height: 100%;
+    width: 100%;
+    font-family: 'Roboto Slab', serif;
+    
+  }
+  h1, h2, h3 {
+    font-family: 'Montserrat','sans-serif';
+}
+
+h1 {
+    font-size: 2.3vw;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+main,.main-website-container{
+  padding: 0.9rem;
+    padding-top: 4.5rem;
+    position: relative;
+}
+/*Nav----------------------------*/
+nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+
+nav .logo h4{
+    font-size: 2rem;
+    background-image: url('cloud.webp');
+    background-repeat: no-repeat;
+    background-clip: text;
+    color: transparent;
+    text-shadow:-1px -2px white;
+  }
+  
+ 
+  nav button{
+    cursor: pointer;
+    background-color: var(--body-color-);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.3rem;
+  }
+.logo{
+  border:white 1px solid;
+  padding: 0.2rem 1rem 0.2rem 1rem;
+  border-radius: 2rem;
+  background-color: var(--body-color-);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  animation: roll-in-left .5s forwards ease;
+}
+
+@keyframes roll-in-left {
+  0% {
+    transform: translateX(-800px) rotate(-540deg);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+  .logo img{
+    height:3rem;
+    width: 3rem;
+    object-fit: contain;
+  }
+  nav ul{
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+nav ul,button{
+  color: white;
+    padding:0.7rem;
+    border-radius: 1.7rem;
+    background-color:var(--body-color-);
+    border: rgb(255, 255, 255) solid 0.5px ;
+}
+nav ul li{
+  text-decoration: none;
+  list-style: none;
+  position: relative;
+    padding: 0.2rem;
+    cursor: pointer;
+  }
+nav ul li::after {
+  content: '';
+  height: 0%;
+  border-radius: 1rem;
+  position: absolute;
+  bottom: 0;
+  display: block;
+  justify-content: center;
+  border: rgb(255, 255, 255) solid 1px;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+  transition: width 0.5s ease;
+}
+
+/* Hover state animation */
+nav ul li:hover::after {
+  animation: underlineAfter 0.5s forwards ease-in-out;
+}
+
+/* Non-hover state animation */
+nav ul li:not(:hover)::after {
+  animation: reverseUnderlineAfter 0.5s forwards ease-in-out;
+}
+
+/* Keyframes with only what's changing */
+@keyframes underlineAfter {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 90%;
+  }
+}
+
+@keyframes reverseUnderlineAfter {
+  0% {
+    width: 90%;
+  }
+  100% {
+    width: 0%;
+    display: none;
+  }
+}
+  
+    main nav{
+  font-family: 'Alegreya Sans SC', sans-serif;
+  position: fixed;
+  left: 0;
+    top:0;
+    width: 100%;
+    height: 10vh;
+    background:  rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 4px );
+    -webkit-backdrop-filter: blur( 4px );
+    border-bottom-left-radius: 0.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    z-index: 100000;
+    border-bottom-right-radius: 0.5rem;
+  }
+  
+  .weather-container{
+    margin: 0;
+    height: auto;
+    padding: 2rem 1.5rem 2rem 1.5rem;
+    border-radius:1rem;
+    background-color: var(--main-background-color);
+    backdrop-filter: blur(10px);
+    gap: 0rem;
+    row-gap: 2vh;
+    
+  }
+  .container-for-weather{
+    min-width: 100%;
+    width: auto;
+    min-height: 100%;
+    height: auto;
+    background-color: var(--main-content-color);
+    box-shadow: var(--section-box-shadow);
+    border-radius: 1rem;
+  }
+.padding-container{
+  padding: 1.5rem;
+    background-image: linear-gradient(180deg, #dbdbdb 100%,rgb(111, 111, 255) 0%);
+ 
+}
+
+.container-for-background-img{
+  min-height: 40vh;
+  border-radius: 1rem;
+  background-image: url("blue-back-reviews.jpg");
+  background-position:center;
+  background-size:cover;
+  background-repeat: no-repeat;
+  box-shadow: var(--section-box-shadow);
+  border-bottom:rgb(79, 79, 79) solid 3px ;
+}
+.container-for-weather .highlight,
+.forecast,
+.time{
+  border: black solid 1px;
+  border-radius: 1rem;
+  border-radius: 38px;
+background: linear-gradient(145deg, #f0f0f0, #cacaca);
+box-shadow:  6px 6px 0px #b5b5b5,
+             -1px -1px 0px #ffffff;
+}
+.temp,.date,.title{
+  color: white;
+  font-weight: 500;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+.title {
+  font-size: 36px;
+  font-weight: bold;
+  text-align: center;
+      padding: 20px;
+    }
+
+    .search-bar {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 1rem;
+    padding: 20px;
+    position: relative;
+}
+
+.search-bar input {
+    z-index: 1;
+    background-color: white;
+    width: 60%;
+    height: 40px;
+    border-radius: 20px;
+    padding: 10px 20px;
+    outline: none;
+}
+
+#searchSuggestions {
+    position: absolute;
+    z-index: 1;
+    background-color: white;
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.1);
+    height: auto;
+    top: calc(10px + 40px); /* Position below input (container padding + input height) */
+    left: 45.7%;
+    transform: translateX(-50%);
+    width: 57%; /* Match the input width */
+    margin-top: 5px; /* Small gap between input and suggestions */
+}
+    .styles{
+      padding: 5px;
+      padding-left: 5px;
+      cursor: pointer;
+    }
+    .search-bar input::placeholder {
+      color: #999;
+    }
+    .search-bar input:focus{
+      border: rgb(30, 30, 30) solid 1.5px;
+    }
+    .search-bar button {
+      background-color: #281f3b;
+      width: 40px;
+      height: 40px;
+      border: none;
+      border-radius: 50%;
+      outline: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .search-bar input,.search-bar button{
+      border: grey 0.8px solid;
+    }
+    .now {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px;
+    }
+    .geolocation-btn{
+      padding: 0.5rem;
+    }
+    .now h2 {
+      font-size: 24px;
+      font-weight: normal;
+    }
+    
+    .now p {
+      font-size: 18px;
+      font-weight: normal;
+    }
+
+    .forecast {
+      padding: 20px;
+      display: grid;
+      align-items: center;
+      justify-content: space-around;
+      grid-template-columns: 30%  60%;
+      flex-wrap: wrap;
+    }
+    
+    .forecast h2 {
+      font-size: 24px;
+      font-weight: normal;
+    }
+    
+    .forecast-days {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 80%;
+    }
+    
+    .forecast-days .day {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .forecast-days .day p {
+      font-size: 18px;
+      font-weight: normal;
+    }
+
+    .todays-highlights {
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      overflow-x: auto;
+      scrollbar-width: none;
+      grid-gap: 20px;
+      padding: 20px;
+    }
+    
+    .todays-highlights h2 {
+      font-size: 24px;
+      font-weight: normal;
+      grid-column: span 4;
+    }
+    
+    .todays-highlights .highlight {
+      
+      border-radius: 20px;
+      padding: 20px;
+    }
+
+    .todays-highlights .highlight p {
+      font-size: 18px;
+      font-weight: normal;
+    }
+
+    .location {
+      text-align: center;
+      padding: 20px;
+    }
+
+    .location p {
+      font-size: 18px;
+      font-weight: normal;
+    }
+
+    .time {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px;
+    }
+    
+    .time .time-data {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .time .time-data p {
+      font-size: 18px;
+      font-weight: normal;
+    }
+    
+  
+/*Temp*/
+
+.hamburger-menu {
+  display: none; /* hide the hamburger menu by default */
+  cursor: pointer;
+  color: white;
+  font-size: 2rem;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+.hamburger-menu span {
+  width: 3rem;
+  border-radius: 0.3rem;
+  height: 0.25rem;
+  background-color: white;
+  margin: 0.4rem 0;
+}
+
+.visible{
+  display: none;
+}
+
+    /* New media queries /*/
+     @media (max-width: 1024px) { 
+       /* devices with a maximum width of 768px (medium-sized devices)*/
+       .main-website-container{
+         padding: 0;
+       }
+       .search-bar input {
+        width: 40%;
+      }
+      
+      .now {
+        flex-direction: column;
+      }
+      
+      .forecast-days {
+        flex-wrap: wrap;
+      }
+      .forecast{
+        justify-content: space-between;
+        
+      }
+      .now{
+   display: flex;
+   flex-direction: row;
+ }
+      .forecast-days .day {
+        margin: 10px;
+      }
+      
+      .todays-highlights {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .time {
+        flex-wrap: wrap;
+      }
+      
+      .time .time-data {
+        margin: 10px;
+      }
+   
+  /* devices with a maximum width of 768px (medium-sized devices) */
+  
+  nav{
+    
+    justify-content:start;
+    gap: 1rem;
+  }
+  nav a{
+    flex-direction: column;
+  }
+
+  nav ul {
+    z-index: -1;
+    display: none;
+    flex-direction: column;
+    align-items:flex-end;
+    border-top: none;
+    border-radius: 0.5rem;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+    position: absolute;
+    top: 4.2rem;
+    left: 0;
+    width: 100%;
+    height: auto;
+    padding: 1rem 0;
+    padding-right: 3rem;
+    background-color: var(--body-color-);
+  }
+
+  nav ul li {
+    padding: 0.5rem;
+    background-color: rgba(84, 84, 84, 0.1);
+    border-radius: 1rem;
+    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+    }
+  
+  
+  nav ul li:hover {
+    background-color:var(--body-color-);
+  }
+
+  .hamburger-menu {
+    display: flex;
+    display: block;
+  }
+      }
+      @media  (max-width: 1256px) {
+  #searchSuggestions {
+    top: calc(10px + 40px);
+    transform: translateX(-50%);
+    margin-top: 5px;
+  }
+}
+ 
+  /* Medium screens */
+  @media (min-width: 480px) and (max-width: 1023px) {
+    #searchSuggestions {
+      width: 33vw;
+      left: 41%;
+    }
+    .hide-on-small {
+    display: none;
+  }
+    
+  }
+  @media (min-width:480px) and (max-width:664px) {
+    #searchSuggestions {
+      left: 39%;
+    }
+  }
+  @media (min-width:760px) and (max-width:1024px) {
+    #searchSuggestions {
+      left: 43%;
+    }
+  }
+  /* Larger screens */
+  @media (min-width: 1024px) {
+    #searchSuggestions {
+      width: 56.5%;
+      left: 45.5%;
+    }
+  }
+/* } */
+/* CSS */
+@media screen and (max-width: 480px) {
+  .weather-container{
+    padding: 4rem 0.5rem 1rem 0.5rem;
+    
+  }
+  .hide-on-small {
+    display: none;
+  }
+  .padding-container{
+    padding: 1.5rem 0.5rem;
+  
+    border-bottom-right-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+  }
+  .forecast {
+      display: flex;
+      justify-content:space-around;
+      align-items: center;
+    }
+    
+    .forecast > div:first-child {
+  display: grid; /* Example: changing display for just the first child */
+  justify-content: center; /* Example: different alignment */
+  align-items: center;
+  /* background-color: #f0f0f0; Optional: any other styles you want */
+}
+
+
+  .search-bar input {
+        width: 80%;
+        margin-top: 10px;
+      }
+
+      .search-bar {
+        flex-direction: column;
+      }
+
+      .todays-highlights {
+        grid-template-columns: 1fr;
+      }
+      #searchSuggestions{
+    width:70%;
+      left: 50%;
+    top: calc(20px + 40px); /* Position below input (container padding + input height) */
+
+  }
+  
+}
+
+@media (max-width: 320px) { /*  devices with a maximum width of 320px (extra small-sized devices) */ 
+  .search-bar input {
+    width: 90%;
+  }
+
+  .forecast-days .day {
+    margin: 5px;
+  }
+
+  .time .time-data {
+    margin: 5px;
+  }
+} 
+
+    
+  </style>
+</head>
+<body>
+  <main class="main-website-container">
+        <header>
+          <nav>
+            <div class="logo">
+              <img src="logo2.webp" alt="" srcset="">
+                    <h4>GeoPulse</h4>
+                </div>
+                
+                <div class="ul-div">
+                    <ul >
+                      <a onclick="location.href='/'"><li>weather dashboard</li></a>
+                      <a onclick="location.href='/interest-and-news'" class="hide-on-small"><li>interests and news</li></a>
+                      <a onclick="location.href='/about-us'" class="hide-on-small"><li>about us</li></a>
+                      <%if(!(session.loggedIn || session.signedUp)){%>
+                        <a onclick="location.href='/signup-or-login'" target="_blank"><li>signup/login</li></a>
+                        <%}%>
+                      <!-- <a onclick="location.href='/signup-or-login'" target="_blank"><li>signup/login</li></a> -->
+                      <a onclick="location.href='/subscribe-mails'"><li>subscribe</li></a>
+                </ul>
+            </div>
+            <div class="button-for-modes">
+                <button onclick="dark()">
+                    <!-- <h4>See Magic</h4> -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="1.8em" viewBox="0 0 256 258"><defs><radialGradient id="logosGoogleBardIcon0" cx="78.302%" cy="55.52%" r="78.115%" fx="78.302%" fy="55.52%" gradientTransform="scale(.99947 1)rotate(78.858 .783 .555)"><stop offset="0%" stop-color="#1ba1e3"/><stop offset=".01%" stop-color="#1ba1e3"/><stop offset="30.022%" stop-color="#5489d6"/><stop offset="54.552%" stop-color="#9b72cb"/><stop offset="82.537%" stop-color="#d96570"/><stop offset="100%" stop-color="#f49c46"/></radialGradient><radialGradient id="logosGoogleBardIcon1" cx="-3.409%" cy="-54.219%" r="169.363%" fx="-3.409%" fy="-54.219%" gradientTransform="matrix(.19314 .98115 -.98062 .19324 -.559 -.404)"><stop offset="0%" stop-color="#1ba1e3"/><stop offset=".01%" stop-color="#1ba1e3"/><stop offset="30.022%" stop-color="#5489d6"/><stop offset="54.552%" stop-color="#9b72cb"/><stop offset="82.537%" stop-color="#d96570"/><stop offset="100%" stop-color="#f49c46"/></radialGradient></defs><path fill="url(#logosGoogleBardIcon0)" d="m122.062 172.77l-10.27 23.52c-3.947 9.042-16.459 9.042-20.406 0l-10.27-23.52c-9.14-20.933-25.59-37.595-46.108-46.703L6.74 113.52c-8.987-3.99-8.987-17.064 0-21.053l27.385-12.156C55.172 70.97 71.917 53.69 80.9 32.043L91.303 6.977c3.86-9.303 16.712-9.303 20.573 0l10.403 25.066c8.983 21.646 25.728 38.926 46.775 48.268l27.384 12.156c8.987 3.99 8.987 17.063 0 21.053l-28.267 12.547c-20.52 9.108-36.97 25.77-46.109 46.703"/><path fill="url(#logosGoogleBardIcon1)" d="m217.5 246.937l-2.888 6.62c-2.114 4.845-8.824 4.845-10.937 0l-2.889-6.62c-5.148-11.803-14.42-21.2-25.992-26.34l-8.898-3.954c-4.811-2.137-4.811-9.131 0-11.269l8.4-3.733c11.87-5.273 21.308-15.017 26.368-27.22l2.966-7.154c2.067-4.985 8.96-4.985 11.027 0l2.966 7.153c5.06 12.204 14.499 21.948 26.368 27.221l8.4 3.733c4.812 2.138 4.812 9.132 0 11.27l-8.898 3.953c-11.571 5.14-20.844 14.537-25.992 26.34"/></svg>
+                  </button>
+                </div>
+            <div class="hamburger-menu">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+        </nav>
+    </header>
+ <!-- Main weather container -->
+            <div class="weather-container">
+              <div class="first-section">
+          <div class="container-for-weather">
+            <div class="container-for-background-img">
+              <h1 class="title">GeoPulse</h1>
+              <div class="search-bar">
+                <div id="searchSuggestions"></div>
+                <input type="text" id="input-for-search" placeholder="Search city..."></input>
+                <button>📍</button>
+                <button class="geolocation-btn">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 16 16"><path fill="darkgray" d="M8 10.5a2.5 2.5 0 1 0 0-5a2.5 2.5 0 0 0 0 5m.5-9a.5.5 0 0 0-1 0v1.525A5.002 5.002 0 0 0 3.025 7.5H1.5a.5.5 0 0 0 0 1h1.525A5.002 5.002 0 0 0 7.5 12.976V14.5a.5.5 0 0 0 1 0v-1.524A5.002 5.002 0 0 0 12.975 8.5H14.5a.5.5 0 1 0 0-1h-1.525A5.002 5.002 0 0 0 8.5 3.025zM8 12a4 4 0 1 1 0-8a4 4 0 0 1 0 8"/></svg>
+                </button>
+              </div>
+            <div class="now">
+              <div class="temp">
+                <p>19°C</p>
+                <p>Clear Sky</p>
+              </div>
+              <div class="date">
+                <h2>Thursday, 2 Mar</h2>
+                <p>Chandpur, BD</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="padding-container">
+       
+            <div class="forecast animate-weather-update">
+              <div>
+                <h2>3 Days Forecast</h2>
+                <small>(Average Temperature)</small>
+              </div>
+              <div class="forecast-days">
+                <div class="day">
+                  
+                  <p>Thursday</p>
+                  <p>22°</p>
+                </div>
+                <div class="day">
+                  <p>Friday</p>
+                  <p>23°</p>
+                </div>
+                <div class="day">
+                  <p>Saturday</p>
+                  <p>23°</p>
+                </div>
+              </div>
+            </div>
+              
+            <!-- <h2 class="show-on-small">Today's Highlights</h2> -->
+            <div class="todays-highlights animate-weather-update">
+              <h2 >Today's Highlights</h2>
+              <div class="highlight">
+                <p>Air Quality Index</p>
+                <p>Very Poor</p>
+              </div>
+              <div class="highlight">
+                <p>Humidity</p>
+                <p>43%</p>
+              </div>
+              <div class="highlight">
+                <p>PM2.5</p>
+                <p>270</p>
+              </div>
+              <div class="highlight">
+                <p>NO2</p>
+                <p>03</p>
+              </div>
+              <div class="highlight">
+                <p>Pressure</p>
+                <p>1016hPa</p>
+              </div>
+              <div class="highlight">
+                <p>Visibility</p>
+                <p>10km</p>
+              </div>
+              <div class="highlight">
+                <p>Feels Like</p>
+                <p>18°C</p>
+              </div>
+            </div>
+            <div class="location animate-weather-update">
+              <p>Current Location: Chandpur, BD</p>
+            </div>
+            <div class="time animate-weather-update">
+              <div class="time-data">
+                <p>3 AM</p>
+                <p>19°</p>
+              </div>
+              <div class="time-data">
+                <p>6 AM</p>
+                <p>19°</p>
+              </div>
+              <div class="time-data">
+                <p>9 AM</p>
+                <p>23°</p>
+              </div>
+              <div class="time-data">
+                <p>12 PM</p>
+                <p>30°</p>
+              </div>
+              <div class="time-data">
+                <p>3 PM</p>
+                <p>31°</p>
+              </div>
+              <div class="time-data">
+                <p>6 PM</p>
+                <p>27°</p>
+              </div>
+              <div class="time-data">
+                <p>9 PM</p>
+                <p>24°</p>
+              </div>
+            </div>
+            
+          </div>
+          </div>
+
+
+        </div>
+            
+      </div>
+            
+      </main>
+</body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<!--Here-->
+
+<!-- Scroll Trigger is needed for Scroll Effects -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+<!-- Three.js is needed for 3d Effects -->
+<!--next-->
+<script src="/scripts/three.min.js"></script>
+
+<!-- ControlKit is needed for Debug Panel -->
+<!-- <script src="controlKit.min.js"></script> -->
+
+<script src="https://cdn.jsdelivr.net/gh/automat/controlkit.js@master/bin/controlKit.min.js"></script>
+
+<!--end of shery js-->
+
+
+  
+    <script rel="preload" src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.min.js"></script>
+   
+  <!--Recommended-->  <script  type="text/javascript"  src="https://unpkg.com/sheryjs/dist/Shery.js"></script> <!-- Recommended -->
+    
+    <script>
+        const scroll = new LocomotiveScroll({
+            el: document.querySelector('.weather-container'),
+            smooth: true,
+            
+        });
+    Shery.mouseFollower({
+  //Parameters are optional.
+        skew: true,
+        ease: "cubic-bezier(0.23, 1, 0.320, 1)",
+        duration: 1,
+});
+
+
+gsap.from(".animate-weather-update", {
+  opacity: 0,
+  duration: 1,
+  stagger: 0.2 // Stagger the animation for multiple elements
+});
+
+
+
+const hamburger = document.querySelector('.hamburger-menu');
+const links = document.querySelector('nav ul');
+
+// Toggle the visibility of the navigation links when the hamburger menu is clicked
+hamburger.addEventListener('click', (e) => {
+
+  links.style.display = links.style.display === 'flex' ? 'none' : 'flex'
+});
+
+var userSavedLoc = '<%=userSavedLocation%>';
+var isRegUser;
+try {
+    isRegUser = JSON.parse('<%= (session.signedUp || session.loggedIn)%>');
+} catch (error) {
+    isRegUser = false; // default value if parsing fails
+}
+</script>
+<script type="module" src="/scripts/api.js"></script>
+
+</html>

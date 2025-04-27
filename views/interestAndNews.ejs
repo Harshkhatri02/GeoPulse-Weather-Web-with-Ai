@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>GeoPulse | Interest And News</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="/images/">
+    <!--Fonts-->
+    <!--==-------=++++++++-->
+    <link rel="shortcut icon" rel="preload" href="logo2.png" type="image/x-icon">    
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <link rel="stylesheet" href="https://unpkg.com/sheryjs/dist/Shery.css" /> <!-- Recommended -->
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.css">
+    <script src="/scripts/dark-n-light-mode.js"></script>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@500&family=Montserrat:wght@900&family=Roboto+Slab:wght@500&display=swap');
+      /*tmp*/
+      /* @import url('https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Montserrat&family=Oswald:wght@300&display=swap'); */
+      :root{
+    --main-background-color:rgba(255, 255, 255, 0.56);
+    --main-content-color:rgba( 255, 255, 255, 0.25 );
+    --border-content:rgb(255, 255, 255) solid 4px;
+    --body-color-:#7a8d9d;
+    --section-box-shadow:-3px 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+}
+.d-n-l-mode{
+    /* color-scheme: dark; */
+    --main-background-color:rgba(255, 255, 255, 0.56);
+    --main-content-color:rgba(255, 255, 255, 0.25);
+    --border-content:rgb(255, 255, 255) solid 5px;
+    --body-color-:#281f3b; 
+    --section-box-shadow:-3px 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+}
+
+        body{
+            background-color:var(--body-color-);
+        }
+*{
+  font-display: swap;
+
+    margin: 0;
+    padding:0;
+    box-sizing: border-box;
+}
+/*Mandatories*/
+li{
+    list-style: none;
+}
+img,a,span,input,button{
+    display: block;
+}
+a{
+    color: inherit;
+    text-decoration: none;
+}
+input,button{
+    background: none;
+    border: none;
+}
+input{
+    width: 100%;
+}
+button{
+    cursor: pointer;
+}
+sub{
+    vertical-align: baseline;
+}
+sup{
+    vertical-align: top;
+}
+sub,sup{
+    font-size: 0.75rem;
+}
+
+html{
+    font-size: 1rem;
+}
+/*---------*/
+html,body{
+    height: 100% auto;
+    width: 100%;
+    font-family: 'Roboto Slab', serif;
+    
+  }
+h2,h3{
+    font-family: 'Montserrat','sans-serif';
+}  
+h1{
+    font-family: 'Montserrat','sans-serif';
+    font-size:2.3vw;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+  }
+.main-website-container{
+    height: auto;
+    padding: 0.9rem;
+    padding-top: 4.5rem;
+    position: relative;
+}
+/*Nav----------------------------*/
+nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+nav ul,button{
+  color: white;
+}
+nav .logo h4{
+    font-size: 2rem;
+    background-image: url('cloud.jpg');
+    background-repeat: no-repeat;
+    /* background-position: center; */
+    background-clip: text;
+    color: transparent;
+    /* animation: animateBackground 10s ease infinite alternate; */
+    text-shadow:-1px -2px white;
+  }
+  
+  nav button{
+    cursor: pointer;
+    background-color: var(--body-color-);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.3rem;
+  }
+.logo{
+  border:white 1px solid;
+  padding: 0.2rem 1rem 0.2rem 1rem;
+  border-radius: 2rem;
+  background-color: var(--body-color-);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  animation: roll-in-left .5s forwards ease;
+}
+
+@keyframes roll-in-left {
+  0% {
+    -webkit-transform: translateX(-800px) rotate(-540deg);
+    transform: translateX(-800px) rotate(-540deg);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateX(0) rotate(0deg);
+    transform: translateX(0) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+
+  .logo img{
+    height:3rem;
+    width: 3rem;
+    object-fit: contain;
+  }
+  nav ul{
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+nav ul,button{
+    padding:0.7rem;
+    border-radius: 1.7rem;
+    background-color:var(--body-color-);
+    border: rgb(255, 255, 255) solid 0.5px ;
+}
+nav ul li{
+  text-decoration: none;
+  list-style: none;
+  position: relative;
+    padding: 0.2rem;
+    cursor: pointer;
+  }
+ /* Common styles for both hover and non-hover states */
+nav ul li::after {
+  content: '';
+  height: 0%;
+  border-radius: 1rem;
+  position: absolute;
+  bottom: 0;
+  display: block;
+  justify-content: center;
+  border: rgb(255, 255, 255) solid 1px;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+  transition: width 0.5s ease;
+}
+
+/* Hover state animation */
+nav ul li:hover::after {
+  animation: underlineAfter 0.5s forwards ease-in-out;
+}
+
+/* Non-hover state animation */
+nav ul li:not(:hover)::after {
+  animation: reverseUnderlineAfter 0.5s forwards ease-in-out;
+}
+
+/* Keyframes with only what's changing */
+@keyframes underlineAfter {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 90%;
+  }
+}
+
+@keyframes reverseUnderlineAfter {
+  0% {
+    width: 90%;
+  }
+  100% {
+    width: 0%;
+    display: none;
+  }
+}
+    main nav{
+  font-family: 'Alegreya Sans SC', sans-serif;
+  position: fixed;
+  left: 0;
+    top:0;
+    width: 100%;
+    height: 10vh;
+    background:  rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 4px );
+    -webkit-backdrop-filter: blur( 4px );
+    border-bottom-left-radius: 0.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    z-index: 100000;
+    border-bottom-right-radius: 0.5rem;
+  }
+  
+  .visible{
+  display: none;
+}
+
+.hamburger-menu {
+  display: none; /* hide the hamburger menu by default */
+  cursor: pointer;
+  color: white;
+  font-size: 2rem;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+.hamburger-menu span {
+    width: 3rem;
+    border-radius: 0.3rem;
+    height: 0.25rem;
+    background-color: white;
+    margin: 0.4rem 0;
+}
+
+.weather-container{
+  margin: 0;
+  height: auto;
+  overflow-y: auto;
+  padding: 1.7rem 1rem 1.7rem 1rem;
+  border-radius:1rem;
+  background-color: var(--main-background-color);
+  backdrop-filter: blur(10px);
+  gap: 0rem;
+  row-gap: 2vh; 
+}
+
+        
+.container {
+      display: flex;
+      flex-direction: column;
+      height: auto;
+      gap: 0rem;
+      overflow: none;
+      /* position: relative; */
+    }
+    .section-one {
+      border-radius: 0.4rem;
+      /* border-top-left-radius: 0.5em;
+      border-top-right-radius: 0.5rem; */
+      padding: 2.5rem 1rem 2rem 1rem;
+      background-color: var(--main-background-color);
+      display: grid;
+      grid-template-columns: repeat(5, 1fr) ;
+      gap: 1rem;
+      flex-wrap: wrap;
+      overflow-x: auto;
+      scrollbar-width: none;
+      /* margin-bottom: 1rem; */
+    }
+    .section-one::before{
+    font-family: 'Montserrat','sans-serif';
+      font-feature-settings:"abvf";
+      content: 'Your Interests Based AI Tips:';
+      position: absolute;
+      top: 2.5vw;
+      left: 2.5vw;
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+    .section-two {
+      height: auto;
+      padding: 2rem;
+      /* overflow-y: auto; */
+      background-color:
+       rgba(255, 255, 255, 0.484);
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      box-shadow: var(--section-box-shadow);
+    }
+.news-content{
+  border: 2px black solid;
+  border-radius: 1rem;
+}
+   
+    .div-for-search{
+      border-top: black 1px solid;
+      border-bottom: black 1px solid;
+      min-height: 30vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-image: url('winterIm.png');
+      background-position:bottom;
+      background-repeat: no-repeat;
+      background-size: 100%;
+    }
+    
+    .div-for-search input{
+      background-color: white;
+      width: 500px;
+      height: 35px;
+      padding-left: 1rem;
+      border-radius: 1rem;
+      border: 0.5px solid black;
+    }
+    .div-for-search .search-btn{
+      
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0.5rem ;
+      border-radius: 50%;
+      border: black dotted 1px;
+      background-color: var(--body-color-);
+    }
+ 
+    .div {
+      border-radius: 0.5rem;
+      grid-template-rows: repeat(3 auto,1fr);
+      display:grid;
+      border: 1px solid black;
+      height:15vh;
+    }
+  
+    .interest {
+      height: 70%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2vw;
+    }
+
+    .tip {
+      height: 30%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5vw;
+      overflow:auto ;
+
+    }
+    .tip p{
+      
+      white-space: nowrap;
+    }
+ 
+
+    .news {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 1vw;
+    }
+
+    .news-image {
+      border-top-left-radius: 1rem;
+      border-top-right-radius: 1rem;
+      width: 100%;
+      height: 60%;
+      object-fit: cover;
+    }
+
+    .news-headline {
+      border-bottom-right-radius: 1rem;
+      border-bottom-left-radius: 1rem;
+      background-color: var(--main-background-color);
+      width: 100%;
+      height: 40%;
+      text-align: center;
+    }
+    .news-link{
+      font-size: large;
+      display: flex;
+      align-items: center;
+      align-items: center;
+      display: inline-block; /* Ensure the link behaves like a block element */
+      text-decoration: none;
+    }
+
+    .search-bar {
+      width: 80%;
+      height: 10%;
+      margin: 10px;
+      text-overflow: ellipsis;
+    }
+
+   
+    .card {
+  max-width: 300px;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  background-color: var(--main-background-color);
+  border: 1px solid transparent;
+  box-shadow: var(--section-box-shadow);
+  position: relative;
+
+
+
+ 
+  opacity: 0;
+  transform: translateX(-30%);
+  
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+}
+.card img,.card .image{
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+}
+
+.card a {
+  text-decoration: none
+}
+.content{
+  padding: 0.9rem;
+  /* position: relative; */
+  border-top: 0.5px solid black;
+  /* background-color: var(--main-background-color); */
+}
+.regenarate-btn{
+cursor: pointer;
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+}
+
+.image {
+  object-fit: cover;
+  width: 100%;
+  height: 150px;
+  background-color: var(--body-color-);
+  border-radius: 0.2rem;
+  /* background-image: url('food.jpg'); */
+  /* animation: loadImg 0.8s ease forwards ; */
+}
+
+.image img{
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+}
+
+
+
+.title {
+  color: #111827;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.desc {
+  margin-top: 0.5rem;
+  color: #6B7280;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+/* Loading tag */
+@keyframes loading {
+  0% { background-color: #f3f3f3; }
+  50% { background-color: #e0e0e0; }
+  100% { background-color: #f3f3f3; }
+}
+
+.loading {
+  animation: loading 1s infinite;
+  background: #f3f3f3;
+  border-radius: 4px;
+  width: 100%;
+  height: 16px;
+}
+
+
+.action {
+  display: inline-flex;
+  margin-top: 1rem;
+  color: #ffffff;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  align-items: center;
+  gap: 0.25rem;
+  background-color: #2563EB;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.title span svg{
+  height: 2em;
+  width: 2em;
+}
+.action span {
+  transition: .3s ease;
+}
+
+.action:hover span {
+  transform: translateX(4px);
+}
+
+
+
+
+/* New media queries /*/
+
+/* For mobile devices */
+@media  (max-width: 480px) {
+  .section-two {
+    grid-template-columns:none; /* 1 column */
+  }
+}
+@media (max-width:800px){
+  .section-two {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns */
+  }
+}
+@media (max-width: 768px) { 
+  /* devices with a maximum width of 768px (medium-sized devices)*/
+  
+  .main-website-container{
+    padding: 0;
+       }
+ 
+
+}
+@media (max-width: 1024px) {
+  nav{
+    
+    justify-content:start;
+    gap: 1rem;
+  }
+  nav a{
+    flex-direction: column;
+  }
+
+  nav ul {
+      z-index: -1;
+      display: none;
+      flex-direction: column;
+      align-items:flex-end;
+    border-top: none;
+    border-radius: 0.5rem;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+    position: absolute;
+    top: 4.2rem;
+    left: 0;
+    width: 100%;
+    height: auto;
+    padding: 1rem 0;
+    padding-right: 3rem;
+    background-color: var(--body-color-);
+  }
+
+  nav ul li {
+    padding: 0.5rem;
+    background-color: rgba(84, 84, 84, 0.1);
+    border-radius: 1rem;
+    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+  }
+  
+  
+  nav ul li:hover {
+    background-color:var(--body-color-);
+  }
+  .hamburger-menu{
+    display: block;
+  }
+}
+    </style>
+</head>
+<body>
+  <main class="main-website-container">
+        <header>
+          <nav>
+            <div class="logo">
+              <img src="logo2.png" alt="" srcset="">
+                    <h4>GeoPulse</h4>
+                </div>
+                
+                <div class="ul-div">
+                  
+                  <ul >
+                    <a onclick="location.href='/'"><li>weather dashboard</li></a>
+                    <a onclick="location.href='/interest-and-news'"><li>interests and news</li></a>
+                    <a onclick="location.href='/about-us'"><li>about us</li></a>
+                    <%if(!(session.loggedIn || session.signedUp)){%>
+                      <a onclick="location.href='/signup-or-login'" target="_blank"><li>signup/login</li></a>
+                      <%}%>
+                    <!-- <a onclick="location.href='/signup-or-login'" target="_blank"><li>signup/login</li></a> -->
+                    <a onclick="location.href='/subscribe-mails'"><li>subscribe</li></a>
+              </ul>
+            </div>
+            <div class="button-for-modes">
+                <button onclick="dark()">
+                    <!-- <h4></h4> -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="1.8em" viewBox="0 0 256 258"><defs><radialGradient id="logosGoogleBardIcon0" cx="78.302%" cy="55.52%" r="78.115%" fx="78.302%" fy="55.52%" gradientTransform="scale(.99947 1)rotate(78.858 .783 .555)"><stop offset="0%" stop-color="#1ba1e3"/><stop offset=".01%" stop-color="#1ba1e3"/><stop offset="30.022%" stop-color="#5489d6"/><stop offset="54.552%" stop-color="#9b72cb"/><stop offset="82.537%" stop-color="#d96570"/><stop offset="100%" stop-color="#f49c46"/></radialGradient><radialGradient id="logosGoogleBardIcon1" cx="-3.409%" cy="-54.219%" r="169.363%" fx="-3.409%" fy="-54.219%" gradientTransform="matrix(.19314 .98115 -.98062 .19324 -.559 -.404)"><stop offset="0%" stop-color="#1ba1e3"/><stop offset=".01%" stop-color="#1ba1e3"/><stop offset="30.022%" stop-color="#5489d6"/><stop offset="54.552%" stop-color="#9b72cb"/><stop offset="82.537%" stop-color="#d96570"/><stop offset="100%" stop-color="#f49c46"/></radialGradient></defs><path fill="url(#logosGoogleBardIcon0)" d="m122.062 172.77l-10.27 23.52c-3.947 9.042-16.459 9.042-20.406 0l-10.27-23.52c-9.14-20.933-25.59-37.595-46.108-46.703L6.74 113.52c-8.987-3.99-8.987-17.064 0-21.053l27.385-12.156C55.172 70.97 71.917 53.69 80.9 32.043L91.303 6.977c3.86-9.303 16.712-9.303 20.573 0l10.403 25.066c8.983 21.646 25.728 38.926 46.775 48.268l27.384 12.156c8.987 3.99 8.987 17.063 0 21.053l-28.267 12.547c-20.52 9.108-36.97 25.77-46.109 46.703"/><path fill="url(#logosGoogleBardIcon1)" d="m217.5 246.937l-2.888 6.62c-2.114 4.845-8.824 4.845-10.937 0l-2.889-6.62c-5.148-11.803-14.42-21.2-25.992-26.34l-8.898-3.954c-4.811-2.137-4.811-9.131 0-11.269l8.4-3.733c11.87-5.273 21.308-15.017 26.368-27.22l2.966-7.154c2.067-4.985 8.96-4.985 11.027 0l2.966 7.153c5.06 12.204 14.499 21.948 26.368 27.221l8.4 3.733c4.812 2.138 4.812 9.132 0 11.27l-8.898 3.953c-11.571 5.14-20.844 14.537-25.992 26.34"/></svg>
+                  </button>
+                </div>
+            <div class="hamburger-menu">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+        </nav>
+    </header>
+ 
+            <div class="weather-container">
+        
+  <div class="container">
+      
+      <div class="section-one">
+        <% if ((session.signedUp|| session.loggedIn ) && session.interestsSaved) { %>
+          <!-- Display only the selected cards -->
+          <!-- Replace the placeholders with your actual card content -->
+          <% if (interests.food) { %>
+              <!-- Render the food card -->
+              <div class="card" id="food-card">
+                <div class="image">
+                    <img src="food.jpg" alt="">
+                </div>
+                <div class="content">
+                    <a href="#">
+                        <span class="title">
+                            Food
+                            <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 36 36"><path fill="#292f33" d="M13.037 34.816C.794 33.013 1 20.719 1 17h34c0 1.914.087 15.77-13.125 17.918c-2.042.332-6.458.249-8.838-.102"/><path fill="#66757f" d="M33.388 13.247c2.467-5.574-8.331-5.254-11.035-4.382A37.649 37.649 0 0 0 18 8.611c-9.389 0-17 3.228-17 8.444c0 1.009.291 1.979.818 2.891c-4.327 5.712 4.246 6.786 9.184 5.71c2.136.537 4.5.844 6.998.844c9.389 0 17-4.229 17-9.444c0-1.43-.589-2.704-1.612-3.809"/><ellipse cx="18" cy="18" fill="#ffcc4d" rx="15" ry="7"/><path fill="#77b255" d="M4 16c-.542-2.169 2-6 7-5c1-1 2.838-2 6-2c2 0 5.612 1.775 4 5c-1 2-5 5-10 3c-1 1-6 3-7-1"/><path fill="#5c913b" d="M12 17c-.249.036-.471.073-.678.111C16.17 18.857 20.022 15.956 21 14c1.078-2.156-.181-3.66-1.731-4.423c.394 1.822-1.128 6.546-7.269 7.423"/><path fill="#d99e82" d="M5 16c.525-1.313 5-3 10 3c1 1 4.586 1.586 6 3c1 1 0 2-4 2S3 21 5 16"/><path fill="#b27962" d="M6.041 20.018C8.589 22.561 14.231 24 17 24c4 0 5-1 4-2c-.326-.326-.77-.607-1.268-.86c-3.204 1.733-11.68-.144-13.691-1.122"/><path fill="#ffe8b6" d="M27 19.001c-.209 0-.423-.034-.633-.104l-3-1a2 2 0 0 1 1.265-3.795l3 1A2 2 0 0 1 27 19.001M26 22h-2a1 1 0 1 1 0-2h2a1 1 0 1 1 0 2"/></svg>
+                    
+                            <!-- <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 36 36"></svg> -->
+                        </span>
+                    </a>
+                    <p class="desc" id="tip-text">
+                        Tip: Try some local delicacies in Parner
+                    </p>
+                    <svg class="regenarate-btn" onclick="regenerateTip('food')" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 24 24"><path fill="black" d="M10 11H7.101l.001-.009a4.956 4.956 0 0 1 .752-1.787a5.054 5.054 0 0 1 2.2-1.811c.302-.128.617-.226.938-.291a5.078 5.078 0 0 1 2.018 0a4.978 4.978 0 0 1 2.525 1.361l1.416-1.412a7.036 7.036 0 0 0-2.224-1.501a6.921 6.921 0 0 0-1.315-.408a7.079 7.079 0 0 0-2.819 0a6.94 6.94 0 0 0-1.316.409a7.04 7.04 0 0 0-3.08 2.534a6.978 6.978 0 0 0-1.054 2.505c-.028.135-.043.273-.063.41H2l4 4zm4 2h2.899l-.001.008a4.976 4.976 0 0 1-2.103 3.138a4.943 4.943 0 0 1-1.787.752a5.073 5.073 0 0 1-2.017 0a4.956 4.956 0 0 1-1.787-.752a5.072 5.072 0 0 1-.74-.61L7.05 16.95a7.032 7.032 0 0 0 2.225 1.5c.424.18.867.317 1.315.408a7.07 7.07 0 0 0 2.818 0a7.031 7.031 0 0 0 4.395-2.945a6.974 6.974 0 0 0 1.053-2.503c.027-.135.043-.273.063-.41H22l-4-4z"/></svg>
+                   
+                </div>
+            </div>
+            
+          <% } %>
+          <% if (interests.health) { %>
+              <!-- Render the health card -->
+              <div class="card" id="health-card">
+                <div class="image">
+                  <img src="health.jpg" alt="">
+                </div>
+                <div class="content">
+                    <a href="#">
+                        <span class="title">
+                          Health
+                          <svg height="2em" width="2em" mlns="http://www.w3.org/2000/svg" enable-background="new 0 0 48 48" viewBox="0 0 48 48" id="medical-insurance"><path fill="#ccc" d="M24,44c18-9.091,18-18.182,18-34.545C37.197,8.269,24,5,24,5S10.804,8.266,6,9.455C6,25.818,6,34.909,24,44z"></path><path fill="#efefef" d="M38.428,8.572C32.586,7.127,24,5,24,5S10.804,8.266,6,9.455c0,11.218,0.002,19.018,5.802,25.743
+                            c0,0,2.523-6.288,13.09-13.09S38.428,8.572,38.428,8.572z"></path><polygon fill="#fc5696" points="34 20 27 20 27 13 21 13 21 20 14 20 14 26 21 26 21 33 27 33 27 26 34 26"></polygon><path fill="#fc92c3" d="M27,20v-7h-6v7h-7v6h7c0,0,0.517-1.348,2.944-2.944C26.371,21.46,27,20,27,20z"></path><path d="M42.229,8.628c-0.012,0-17.986-4.589-17.999-4.588c-0.189-0.058-0.404-0.017-0.597,0.033L5.753,8.393
+                            C5.335,8.494,5.024,8.872,5.027,9.32C5.11,24.672,6.002,35.67,21.209,43.134c1.363,0.721,2.579,1.15,2.885,1.032
+                            c3.582-0.906,8.002-4.095,10.933-6.713c7.967-6.907,7.98-18.216,7.913-27.903C42.944,9.126,42.659,8.738,42.229,8.628z
+                             M26.391,42.234c-1.124,0.669-2.061,1.288-2.357,1.647c-0.301-0.345-1.175-0.941-2.34-1.621C7.715,34.799,6.842,24.581,6.944,10.074
+                            l17.05-4.032l17.053,4.257C41.323,24.967,40.45,34.233,26.391,42.234z M34.051,18.975l-6.026-0.015
+                            c-0.033-1.459-0.131-5.877-0.131-5.877c-0.002-0.539-0.439-0.98-0.981-0.981c0,0-5.888-0.021-5.888-0.021
+                            c-0.523-0.002-0.95,0.424-0.948,0.948l-0.089,6.053c-1.827,0.079-5.933,0.246-5.961,0.261c-0.41,0.019-0.736,0.359-0.733,0.773
+                            c0,0,0.04,5.772,0.04,5.772c-0.008,0.361,0.289,0.659,0.65,0.65c0.958-0.059,5.901-0.024,6.719-0.248
+                            c-0.263,0.826-0.261,5.631-0.328,6.615c-0.012,0.36,0.286,0.653,0.645,0.645l6.021,0.229c0.433,0.018,0.791-0.343,0.775-0.775
+                            l0.053-6.107c1.346,0.017,6.247,0.077,6.247,0.077c0.525,0.007,0.955-0.42,0.951-0.945c-0.002-0.003-0.031-6.067-0.034-6.07
+                            C35.032,19.418,34.593,18.977,34.051,18.975z M26.958,25.121c-0.477,0.01-0.855,0.405-0.844,0.882l0.137,6.23l-4.601,0.024
+                            c-0.036-1.386-0.118-4.532-0.118-4.532c-0.012-0.776-0.112-1.349-0.244-1.674c0.265-0.252-0.275-0.554-1.911-0.629l-4.719-0.162
+                            l0.159-4.38l6.039-0.081c0.472-0.007,0.862-0.384,0.879-0.861c0-0.013,0.14-4.057,0.205-5.948l4.009,0.06
+                            c0.024,1.428,0.101,5.909,0.101,5.909c0.008,0.767,0.705,1.085,1.39,1c0,0,5.645-0.013,5.645-0.013l0.068,4.134
+                            C31.206,25.092,26.981,25.117,26.958,25.121z"></path></svg>
+                        </span>
+                    </a>
+                    <p class="desc">
+                      Tip: Drink plenty of water and stay hydrated
+                    </p>
+                    <svg class="regenarate-btn" onclick="regenerateTip('health')" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 24 24"><path fill="black" d="M10 11H7.101l.001-.009a4.956 4.956 0 0 1 .752-1.787a5.054 5.054 0 0 1 2.2-1.811c.302-.128.617-.226.938-.291a5.078 5.078 0 0 1 2.018 0a4.978 4.978 0 0 1 2.525 1.361l1.416-1.412a7.036 7.036 0 0 0-2.224-1.501a6.921 6.921 0 0 0-1.315-.408a7.079 7.079 0 0 0-2.819 0a6.94 6.94 0 0 0-1.316.409a7.04 7.04 0 0 0-3.08 2.534a6.978 6.978 0 0 0-1.054 2.505c-.028.135-.043.273-.063.41H2l4 4zm4 2h2.899l-.001.008a4.976 4.976 0 0 1-2.103 3.138a4.943 4.943 0 0 1-1.787.752a5.073 5.073 0 0 1-2.017 0a4.956 4.956 0 0 1-1.787-.752a5.072 5.072 0 0 1-.74-.61L7.05 16.95a7.032 7.032 0 0 0 2.225 1.5c.424.18.867.317 1.315.408a7.07 7.07 0 0 0 2.818 0a7.031 7.031 0 0 0 4.395-2.945a6.974 6.974 0 0 0 1.053-2.503c.027-.135.043-.273.063-.41H22l-4-4z"/></svg>
+                   
+                </div>
+            </div>
+          <% } %>
+          <% if (interests.sports) { %>
+              <!-- Render the sports card -->
+              <div class="card" id="sports-card">
+                <div class="image">
+                  <img src="sports.jpg" alt="">
+                </div>
+                <div class="content">
+                    <a href="#">
+                        <span class="title">
+                          Sports
+                          <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 48 48"><circle cx="28" cy="9" r="5" fill="#ff9800"/><path fill="#00796b" d="m29 27.3l-9.2-4.1c-1-.5-1.5 1-2 2s-4.1 7.2-3.8 8.3c.3.9 1.1 1.4 1.9 1.4c.2 0 .4 0 .6-.1L28.8 31c.8-.2 1.4-1 1.4-1.8s-.5-1.6-1.2-1.9"/><path fill="#009688" d="m26.8 15.2l-2.2-1c-1.3-.6-2.9 0-3.5 1.3L9.2 41.1c-.5 1 0 2.2 1 2.7c.3.1.6.2.9.2c.8 0 1.5-.4 1.8-1.1c0 0 9.6-13.3 10.4-14.9s4.9-9.3 4.9-9.3c.5-1.3 0-2.9-1.4-3.5"/><path fill="#ff9800" d="M40.5 15.7c-.7-.8-2-1-2.8-.3l-5 4.2l-6.4-3.5c-1.1-.6-2.6-.4-3.3.9c-.8 1.3-.4 2.9.8 3.4l8.3 3.4c.3.1.6.2.9.2c.5 0 .9-.2 1.3-.5l6-5c.8-.7.9-1.9.2-2.8m-28.8 7.4l3.4-5.1l4.6.6l1.5-3.1c.4-.9 1.2-1.4 2.1-1.5h-9.2c-.7 0-1.3.3-1.7.9l-4 6c-.6.9-.4 2.2.6 2.8c.2.2.6.3 1 .3c.6 0 1.3-.3 1.7-.9"/></svg></span>
+                       </span>
+                    </a>
+                    <p class="desc">
+                      Tip: Watch the cricket match between India and Australia
+                    </p>
+                    <svg class="regenarate-btn" onclick="regenerateTip('sports')" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 24 24"><path fill="black" d="M10 11H7.101l.001-.009a4.956 4.956 0 0 1 .752-1.787a5.054 5.054 0 0 1 2.2-1.811c.302-.128.617-.226.938-.291a5.078 5.078 0 0 1 2.018 0a4.978 4.978 0 0 1 2.525 1.361l1.416-1.412a7.036 7.036 0 0 0-2.224-1.501a6.921 6.921 0 0 0-1.315-.408a7.079 7.079 0 0 0-2.819 0a6.94 6.94 0 0 0-1.316.409a7.04 7.04 0 0 0-3.08 2.534a6.978 6.978 0 0 0-1.054 2.505c-.028.135-.043.273-.063.41H2l4 4zm4 2h2.899l-.001.008a4.976 4.976 0 0 1-2.103 3.138a4.943 4.943 0 0 1-1.787.752a5.073 5.073 0 0 1-2.017 0a4.956 4.956 0 0 1-1.787-.752a5.072 5.072 0 0 1-.74-.61L7.05 16.95a7.032 7.032 0 0 0 2.225 1.5c.424.18.867.317 1.315.408a7.07 7.07 0 0 0 2.818 0a7.031 7.031 0 0 0 4.395-2.945a6.974 6.974 0 0 0 1.053-2.503c.027-.135.043-.273.063-.41H22l-4-4z"/></svg>
+                   
+                </div>
+            </div>
+             
+              
+          <% } %>
+          <% if (interests.travel) { %>
+              <!-- Render the travel card -->
+              <div class="card" id="travel-card">
+                <div class="image">
+                  <img src="travel.jpg" alt="">
+                </div>
+                <div class="content">
+                    <a href="#">
+                        <span class="title">
+                          Travel
+                          <svg height="2em" width="2em" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 512 512" id="travel-time"><g data-name="<Group>"><g data-name="<Group>"><path fill="#00acea" d="M471.24,432.92v17.47H362.21V433.38a60.026,60.026,0,0,1,25.15-48.84l30.07-21.46,29.26,21.43A60,60,0,0,1,471.24,432.92Z" data-name="<Group>"></path><path fill="#00efd1" d="M470.21,87.56a44.823,44.823,0,0,1,3.91,18.21c0,15.55-8.36,29.88-22.43,36.12L343.01,187.75,280.76,309.63a41.632,41.632,0,0,1-20.73,20.26l-27.96,12.4a10.39,10.39,0,0,1-14.15-12.55l38-113.28L104.11,265.1a22.813,22.813,0,0,1-22.43-5.81L24.74,209.26A19.948,19.948,0,0,1,46.8,176.42l41.81,20.84a22.685,22.685,0,0,0,22.81,2.73l111.79-49.37,86.86-38.36L417.5,64.81C437.5,55.94,460.69,66.09,470.21,87.56Z" data-name="<Group>"></path><path fill="#fedb41" d="M470.53,274.35v15.36a60,60,0,0,1-24.24,48.18l-28.86,21.42-30.48-21.49a60,60,0,0,1-25.44-49.04V274.35Z" data-name="<Group>"></path><path fill="#00acea" d="M309.89,111.85l.18.41-86.86,38.36-.11-.26-78.47-42a10.393,10.393,0,0,1,.7-18.66l19.04-8.45a41.548,41.548,0,0,1,28.13-2.01Z" data-name="<Group>"></path></g><g data-name="<Group>"><path fill="#083863" d="M454.8,149.261l.133-.058c16.516-7.324,27.187-24.373,27.187-43.433a52.562,52.562,0,0,0-4.6-21.454,51.8,51.8,0,0,0-26.556-26.848,45.223,45.223,0,0,0-36.7.023L309.955,103.565,194.672,71.541a49.651,49.651,0,0,0-33.547,2.4L142.1,82.383a18.38,18.38,0,0,0-9.37,24.269,18.463,18.463,0,0,0,8.128,8.762l64.319,34.426-96.957,42.819a14.691,14.691,0,0,1-14.765-1.767,8,8,0,0,0-1.273-.792L50.356,169.254A28.164,28.164,0,0,0,37.9,166.33a27.948,27.948,0,0,0-18.44,48.94l56.761,49.873a30.832,30.832,0,0,0,30.1,7.646c.079-.022.157-.046.235-.071L243.309,228.9l-32.974,98.3c-.02.059-.039.118-.057.179A18.4,18.4,0,0,0,235.313,349.6l27.966-12.4a49.643,49.643,0,0,0,24.659-24.036l60.87-119.178ZM148.4,101.306a2.4,2.4,0,0,1-1.1-2.97,2.34,2.34,0,0,1,1.269-1.323l19.039-8.451a33.644,33.644,0,0,1,22.745-1.614l96.514,26.811-63.121,27.876Zm187.483,82.805-62.25,121.88c-.037.073-.074.148-.109.223a33.628,33.628,0,0,1-16.739,16.362l-27.951,12.4a2.391,2.391,0,0,1-3.291-2.809L263.5,219a8,8,0,0,0-10.025-10.162L101.8,257.439a14.828,14.828,0,0,1-14.461-3.805c-.122-.122-.247-.24-.377-.354L30.022,203.251a11.947,11.947,0,0,1,3.03-19.893,12.027,12.027,0,0,1,10.179.222l41.187,20.529a30.728,30.728,0,0,0,30.234,3.2L313.3,119.578h0L420.743,72.123a29.4,29.4,0,0,1,23.861.024A35.864,35.864,0,0,1,462.9,90.807a36.658,36.658,0,0,1,3.222,14.963c0,12.713-6.911,24-17.611,28.779L339.9,180.379A8,8,0,0,0,335.885,184.111Z" data-name="<Compound Path>"></path><path fill="#083863" d="M479,289.71V282h15.04a8,8,0,0,0,0-16H338a8,8,0,0,0,0,16h16v6.78a67.846,67.846,0,0,0,28.585,55.578l23.8,16.865L382.667,378.03A68.315,68.315,0,0,0,354,433.38V442H338a8,8,0,0,0,0,16H494.04a8,8,0,0,0,0-16H479v-9.08a68.119,68.119,0,0,0-27.7-54.864l-23-16.891,22.969-16.852A68.538,68.538,0,0,0,479,289.71ZM463,432.92V442H370v-8.62a52.223,52.223,0,0,1,21.9-42.328l25.415-18.1,24.5,18.012A52.091,52.091,0,0,1,463,432.92ZM441.757,331.466l-24.33,17.971-25.565-18.156A51.884,51.884,0,0,1,370,288.78V282h93v7.71A52.446,52.446,0,0,1,441.757,331.466Z" data-name="<Compound Path>"></path></g></g></svg>
+                             </span>
+                    </a>
+                    <p class="desc">
+                      Tip: Visit the historical forts nearby
+                    </p>
+                    <svg class="regenarate-btn" onclick="regenerateTip('travel')" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 24 24"><path fill="black" d="M10 11H7.101l.001-.009a4.956 4.956 0 0 1 .752-1.787a5.054 5.054 0 0 1 2.2-1.811c.302-.128.617-.226.938-.291a5.078 5.078 0 0 1 2.018 0a4.978 4.978 0 0 1 2.525 1.361l1.416-1.412a7.036 7.036 0 0 0-2.224-1.501a6.921 6.921 0 0 0-1.315-.408a7.079 7.079 0 0 0-2.819 0a6.94 6.94 0 0 0-1.316.409a7.04 7.04 0 0 0-3.08 2.534a6.978 6.978 0 0 0-1.054 2.505c-.028.135-.043.273-.063.41H2l4 4zm4 2h2.899l-.001.008a4.976 4.976 0 0 1-2.103 3.138a4.943 4.943 0 0 1-1.787.752a5.073 5.073 0 0 1-2.017 0a4.956 4.956 0 0 1-1.787-.752a5.072 5.072 0 0 1-.74-.61L7.05 16.95a7.032 7.032 0 0 0 2.225 1.5c.424.18.867.317 1.315.408a7.07 7.07 0 0 0 2.818 0a7.031 7.031 0 0 0 4.395-2.945a6.974 6.974 0 0 0 1.053-2.503c.027-.135.043-.273.063-.41H22l-4-4z"/></svg>
+                   
+                </div>
+            </div>
+            
+          <% } %>
+          <% if (interests.fashion) { %>
+              <!-- Render the fashion card -->
+              <div class="card" id="fashion-card">
+                <div class="image">
+                  <img src="fashion.jpg" alt="">
+                </div>
+                <div class="content">
+                    <a href="#">
+                        <span class="title">
+                          Fashion
+                          <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><path fill="#597b91" d="M443.174 256c0 8.334-6.756 15.09-15.09 15.09s-15.09-6.756-15.09-15.09s6.756-15.09 15.09-15.09s15.09 6.756 15.09 15.09"/><path fill="#2b3b47" d="M319.747 512H197.082c-15.906 0-28.8-12.894-28.8-28.8V28.8c0-15.906 12.894-28.8 28.8-28.8h122.665c15.906 0 28.8 12.894 28.8 28.8v454.4c0 15.906-12.894 28.8-28.8 28.8"/><path fill="#bfbcaf" d="M428.084 256c0 95.039-77.045 172.084-172.084 172.084S83.916 351.039 83.916 256S160.961 83.916 256 83.916S428.084 160.961 428.084 256"/><path fill="#f9f9f7" d="M256 394.21c-76.209 0-138.209-62.002-138.209-138.211s62-138.207 138.209-138.207s138.209 61.998 138.209 138.207S332.209 394.21 256 394.21"/><path fill="#597b91" d="M266.48 163.463v93.992a8.637 8.637 0 0 1-8.638 8.637c-.383 0-.758-.034-1.128-.082c-.37.048-.745.082-1.128.082h-96.047a8.638 8.638 0 1 1 0-17.274h89.665v-85.355a8.637 8.637 0 0 1 8.638-8.637a8.637 8.637 0 0 1 8.638 8.637"/></svg>
+                          
+                        </span>
+                    </a>
+                    <p class="desc" id="tip-tex">
+                      Tip: Check out the latest trends from Mumbai
+                    </p>
+                    <svg class="regenarate-btn" onclick="regenerateTip('fashion')" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 24 24"><path fill="black" d="M10 11H7.101l.001-.009a4.956 4.956 0 0 1 .752-1.787a5.054 5.054 0 0 1 2.2-1.811c.302-.128.617-.226.938-.291a5.078 5.078 0 0 1 2.018 0a4.978 4.978 0 0 1 2.525 1.361l1.416-1.412a7.036 7.036 0 0 0-2.224-1.501a6.921 6.921 0 0 0-1.315-.408a7.079 7.079 0 0 0-2.819 0a6.94 6.94 0 0 0-1.316.409a7.04 7.04 0 0 0-3.08 2.534a6.978 6.978 0 0 0-1.054 2.505c-.028.135-.043.273-.063.41H2l4 4zm4 2h2.899l-.001.008a4.976 4.976 0 0 1-2.103 3.138a4.943 4.943 0 0 1-1.787.752a5.073 5.073 0 0 1-2.017 0a4.956 4.956 0 0 1-1.787-.752a5.072 5.072 0 0 1-.74-.61L7.05 16.95a7.032 7.032 0 0 0 2.225 1.5c.424.18.867.317 1.315.408a7.07 7.07 0 0 0 2.818 0a7.031 7.031 0 0 0 4.395-2.945a6.974 6.974 0 0 0 1.053-2.503c.027-.135.043-.273.063-.41H22l-4-4z"/></svg>
+                   
+                </div>
+            </div>
+              
+          <% } %>
+      <% } else if (session.signedUp || session.loggedIn) { %>
+          <!-- Display the form to select interests -->
+          <!-- Replace the form with your actual interests selection form -->
+          <div style="background-color: var(--main-background-color);position: relative;left: 50%;border-radius: 10rem;padding: 1rem 3rem;">
+            <form action="/save-interests" method="POST" style="display: flex;gap: 1rem;align-items: center;min-height: 38vh;justify-content: center;">
+              <label for="health">Health</label>
+              <input type="checkbox" id="health" name="health">
+          
+              <label for="sports">Sports</label>
+              <input type="checkbox" id="sports" name="sports">
+          
+              <label for="travel">Travel</label>
+              <input type="checkbox" id="travel" name="travel">
+          
+              <label for="food">Food</label>
+              <input type="checkbox" id="food" name="food">
+          
+              <label for="fashion">Fashion</label>
+              <input type="checkbox" id="fashion" name="fashion">
+          
+              <button type="submit">Save Interests</button>
+            </form>
+
+          </div>
+      <% } else { %>
+          <!-- Display the default cards -->
+          <!-- Replace the placeholders with your actual card content -->
+          <div class="card" id="food-card">
+            <div class="image">
+                <img src="food.jpg" alt="" loading="lazy">
+            </div>
+            <div class="content">
+                <a href="#">
+                    <span class="title">
+                        Food
+                        <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 36 36"><path fill="#292f33" d="M13.037 34.816C.794 33.013 1 20.719 1 17h34c0 1.914.087 15.77-13.125 17.918c-2.042.332-6.458.249-8.838-.102"/><path fill="#66757f" d="M33.388 13.247c2.467-5.574-8.331-5.254-11.035-4.382A37.649 37.649 0 0 0 18 8.611c-9.389 0-17 3.228-17 8.444c0 1.009.291 1.979.818 2.891c-4.327 5.712 4.246 6.786 9.184 5.71c2.136.537 4.5.844 6.998.844c9.389 0 17-4.229 17-9.444c0-1.43-.589-2.704-1.612-3.809"/><ellipse cx="18" cy="18" fill="#ffcc4d" rx="15" ry="7"/><path fill="#77b255" d="M4 16c-.542-2.169 2-6 7-5c1-1 2.838-2 6-2c2 0 5.612 1.775 4 5c-1 2-5 5-10 3c-1 1-6 3-7-1"/><path fill="#5c913b" d="M12 17c-.249.036-.471.073-.678.111C16.17 18.857 20.022 15.956 21 14c1.078-2.156-.181-3.66-1.731-4.423c.394 1.822-1.128 6.546-7.269 7.423"/><path fill="#d99e82" d="M5 16c.525-1.313 5-3 10 3c1 1 4.586 1.586 6 3c1 1 0 2-4 2S3 21 5 16"/><path fill="#b27962" d="M6.041 20.018C8.589 22.561 14.231 24 17 24c4 0 5-1 4-2c-.326-.326-.77-.607-1.268-.86c-3.204 1.733-11.68-.144-13.691-1.122"/><path fill="#ffe8b6" d="M27 19.001c-.209 0-.423-.034-.633-.104l-3-1a2 2 0 0 1 1.265-3.795l3 1A2 2 0 0 1 27 19.001M26 22h-2a1 1 0 1 1 0-2h2a1 1 0 1 1 0 2"/></svg>
+                
+                        <!-- <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 36 36"></svg> -->
+                    </span>
+                </a>
+                <p class="desc" id="tip-text">
+                    Tip: Try some local delicacies in Parner
+                </p>
+                <svg class="regenarate-btn" onclick="regenerateTip('food')" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 24 24"><path fill="black" d="M10 11H7.101l.001-.009a4.956 4.956 0 0 1 .752-1.787a5.054 5.054 0 0 1 2.2-1.811c.302-.128.617-.226.938-.291a5.078 5.078 0 0 1 2.018 0a4.978 4.978 0 0 1 2.525 1.361l1.416-1.412a7.036 7.036 0 0 0-2.224-1.501a6.921 6.921 0 0 0-1.315-.408a7.079 7.079 0 0 0-2.819 0a6.94 6.94 0 0 0-1.316.409a7.04 7.04 0 0 0-3.08 2.534a6.978 6.978 0 0 0-1.054 2.505c-.028.135-.043.273-.063.41H2l4 4zm4 2h2.899l-.001.008a4.976 4.976 0 0 1-2.103 3.138a4.943 4.943 0 0 1-1.787.752a5.073 5.073 0 0 1-2.017 0a4.956 4.956 0 0 1-1.787-.752a5.072 5.072 0 0 1-.74-.61L7.05 16.95a7.032 7.032 0 0 0 2.225 1.5c.424.18.867.317 1.315.408a7.07 7.07 0 0 0 2.818 0a7.031 7.031 0 0 0 4.395-2.945a6.974 6.974 0 0 0 1.053-2.503c.027-.135.043-.273.063-.41H22l-4-4z"/></svg>
+               
+            </div>
+        </div>
+        
+        <!--FASHION-->
+    
+        <div class="card" id="fashion-card">
+          <div class="image">
+            <img src="fashion.jpg" alt="" loading="lazy">
+          </div>
+          <div class="content">
+              <a href="#">
+                  <span class="title">
+                    Fashion
+                    <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512"><path fill="#597b91" d="M443.174 256c0 8.334-6.756 15.09-15.09 15.09s-15.09-6.756-15.09-15.09s6.756-15.09 15.09-15.09s15.09 6.756 15.09 15.09"/><path fill="#2b3b47" d="M319.747 512H197.082c-15.906 0-28.8-12.894-28.8-28.8V28.8c0-15.906 12.894-28.8 28.8-28.8h122.665c15.906 0 28.8 12.894 28.8 28.8v454.4c0 15.906-12.894 28.8-28.8 28.8"/><path fill="#bfbcaf" d="M428.084 256c0 95.039-77.045 172.084-172.084 172.084S83.916 351.039 83.916 256S160.961 83.916 256 83.916S428.084 160.961 428.084 256"/><path fill="#f9f9f7" d="M256 394.21c-76.209 0-138.209-62.002-138.209-138.211s62-138.207 138.209-138.207s138.209 61.998 138.209 138.207S332.209 394.21 256 394.21"/><path fill="#597b91" d="M266.48 163.463v93.992a8.637 8.637 0 0 1-8.638 8.637c-.383 0-.758-.034-1.128-.082c-.37.048-.745.082-1.128.082h-96.047a8.638 8.638 0 1 1 0-17.274h89.665v-85.355a8.637 8.637 0 0 1 8.638-8.637a8.637 8.637 0 0 1 8.638 8.637"/></svg>
+                    
+                  </span>
+              </a>
+              <p class="desc" id="tip-tex">
+                Tip: Check out the latest trends from Mumbai
+              </p>
+              <svg class="regenarate-btn" onclick="regenerateTip('fashion')" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 24 24"><path fill="black" d="M10 11H7.101l.001-.009a4.956 4.956 0 0 1 .752-1.787a5.054 5.054 0 0 1 2.2-1.811c.302-.128.617-.226.938-.291a5.078 5.078 0 0 1 2.018 0a4.978 4.978 0 0 1 2.525 1.361l1.416-1.412a7.036 7.036 0 0 0-2.224-1.501a6.921 6.921 0 0 0-1.315-.408a7.079 7.079 0 0 0-2.819 0a6.94 6.94 0 0 0-1.316.409a7.04 7.04 0 0 0-3.08 2.534a6.978 6.978 0 0 0-1.054 2.505c-.028.135-.043.273-.063.41H2l4 4zm4 2h2.899l-.001.008a4.976 4.976 0 0 1-2.103 3.138a4.943 4.943 0 0 1-1.787.752a5.073 5.073 0 0 1-2.017 0a4.956 4.956 0 0 1-1.787-.752a5.072 5.072 0 0 1-.74-.61L7.05 16.95a7.032 7.032 0 0 0 2.225 1.5c.424.18.867.317 1.315.408a7.07 7.07 0 0 0 2.818 0a7.031 7.031 0 0 0 4.395-2.945a6.974 6.974 0 0 0 1.053-2.503c.027-.135.043-.273.063-.41H22l-4-4z"/></svg>
+             
+          </div>
+      </div>
+           <!-- TRAVEL -->
+           <div class="card" id="travel-card">
+            <div class="image">
+              <img src="travel.jpg" alt="" loading="lazy">
+            </div>
+            <div class="content">
+                <a href="#">
+                    <span class="title">
+                      Travel
+                      <svg height="2em" width="2em" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 512 512" id="travel-time"><g data-name="<Group>"><g data-name="<Group>"><path fill="#00acea" d="M471.24,432.92v17.47H362.21V433.38a60.026,60.026,0,0,1,25.15-48.84l30.07-21.46,29.26,21.43A60,60,0,0,1,471.24,432.92Z" data-name="<Group>"></path><path fill="#00efd1" d="M470.21,87.56a44.823,44.823,0,0,1,3.91,18.21c0,15.55-8.36,29.88-22.43,36.12L343.01,187.75,280.76,309.63a41.632,41.632,0,0,1-20.73,20.26l-27.96,12.4a10.39,10.39,0,0,1-14.15-12.55l38-113.28L104.11,265.1a22.813,22.813,0,0,1-22.43-5.81L24.74,209.26A19.948,19.948,0,0,1,46.8,176.42l41.81,20.84a22.685,22.685,0,0,0,22.81,2.73l111.79-49.37,86.86-38.36L417.5,64.81C437.5,55.94,460.69,66.09,470.21,87.56Z" data-name="<Group>"></path><path fill="#fedb41" d="M470.53,274.35v15.36a60,60,0,0,1-24.24,48.18l-28.86,21.42-30.48-21.49a60,60,0,0,1-25.44-49.04V274.35Z" data-name="<Group>"></path><path fill="#00acea" d="M309.89,111.85l.18.41-86.86,38.36-.11-.26-78.47-42a10.393,10.393,0,0,1,.7-18.66l19.04-8.45a41.548,41.548,0,0,1,28.13-2.01Z" data-name="<Group>"></path></g><g data-name="<Group>"><path fill="#083863" d="M454.8,149.261l.133-.058c16.516-7.324,27.187-24.373,27.187-43.433a52.562,52.562,0,0,0-4.6-21.454,51.8,51.8,0,0,0-26.556-26.848,45.223,45.223,0,0,0-36.7.023L309.955,103.565,194.672,71.541a49.651,49.651,0,0,0-33.547,2.4L142.1,82.383a18.38,18.38,0,0,0-9.37,24.269,18.463,18.463,0,0,0,8.128,8.762l64.319,34.426-96.957,42.819a14.691,14.691,0,0,1-14.765-1.767,8,8,0,0,0-1.273-.792L50.356,169.254A28.164,28.164,0,0,0,37.9,166.33a27.948,27.948,0,0,0-18.44,48.94l56.761,49.873a30.832,30.832,0,0,0,30.1,7.646c.079-.022.157-.046.235-.071L243.309,228.9l-32.974,98.3c-.02.059-.039.118-.057.179A18.4,18.4,0,0,0,235.313,349.6l27.966-12.4a49.643,49.643,0,0,0,24.659-24.036l60.87-119.178ZM148.4,101.306a2.4,2.4,0,0,1-1.1-2.97,2.34,2.34,0,0,1,1.269-1.323l19.039-8.451a33.644,33.644,0,0,1,22.745-1.614l96.514,26.811-63.121,27.876Zm187.483,82.805-62.25,121.88c-.037.073-.074.148-.109.223a33.628,33.628,0,0,1-16.739,16.362l-27.951,12.4a2.391,2.391,0,0,1-3.291-2.809L263.5,219a8,8,0,0,0-10.025-10.162L101.8,257.439a14.828,14.828,0,0,1-14.461-3.805c-.122-.122-.247-.24-.377-.354L30.022,203.251a11.947,11.947,0,0,1,3.03-19.893,12.027,12.027,0,0,1,10.179.222l41.187,20.529a30.728,30.728,0,0,0,30.234,3.2L313.3,119.578h0L420.743,72.123a29.4,29.4,0,0,1,23.861.024A35.864,35.864,0,0,1,462.9,90.807a36.658,36.658,0,0,1,3.222,14.963c0,12.713-6.911,24-17.611,28.779L339.9,180.379A8,8,0,0,0,335.885,184.111Z" data-name="<Compound Path>"></path><path fill="#083863" d="M479,289.71V282h15.04a8,8,0,0,0,0-16H338a8,8,0,0,0,0,16h16v6.78a67.846,67.846,0,0,0,28.585,55.578l23.8,16.865L382.667,378.03A68.315,68.315,0,0,0,354,433.38V442H338a8,8,0,0,0,0,16H494.04a8,8,0,0,0,0-16H479v-9.08a68.119,68.119,0,0,0-27.7-54.864l-23-16.891,22.969-16.852A68.538,68.538,0,0,0,479,289.71ZM463,432.92V442H370v-8.62a52.223,52.223,0,0,1,21.9-42.328l25.415-18.1,24.5,18.012A52.091,52.091,0,0,1,463,432.92ZM441.757,331.466l-24.33,17.971-25.565-18.156A51.884,51.884,0,0,1,370,288.78V282h93v7.71A52.446,52.446,0,0,1,441.757,331.466Z" data-name="<Compound Path>"></path></g></g></svg>
+                         </span>
+                </a>
+                <p class="desc">
+                  Tip: Visit the historical forts nearby
+                </p>
+                <svg class="regenarate-btn" onclick="regenerateTip('travel')" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 24 24"><path fill="black" d="M10 11H7.101l.001-.009a4.956 4.956 0 0 1 .752-1.787a5.054 5.054 0 0 1 2.2-1.811c.302-.128.617-.226.938-.291a5.078 5.078 0 0 1 2.018 0a4.978 4.978 0 0 1 2.525 1.361l1.416-1.412a7.036 7.036 0 0 0-2.224-1.501a6.921 6.921 0 0 0-1.315-.408a7.079 7.079 0 0 0-2.819 0a6.94 6.94 0 0 0-1.316.409a7.04 7.04 0 0 0-3.08 2.534a6.978 6.978 0 0 0-1.054 2.505c-.028.135-.043.273-.063.41H2l4 4zm4 2h2.899l-.001.008a4.976 4.976 0 0 1-2.103 3.138a4.943 4.943 0 0 1-1.787.752a5.073 5.073 0 0 1-2.017 0a4.956 4.956 0 0 1-1.787-.752a5.072 5.072 0 0 1-.74-.61L7.05 16.95a7.032 7.032 0 0 0 2.225 1.5c.424.18.867.317 1.315.408a7.07 7.07 0 0 0 2.818 0a7.031 7.031 0 0 0 4.395-2.945a6.974 6.974 0 0 0 1.053-2.503c.027-.135.043-.273.063-.41H22l-4-4z"/></svg>
+               
+            </div>
+        </div>
+          
+           <!-- SPORTS -->
+    
+           <div class="card" id="sports-card">
+            <div class="image">
+              <img src="sports.jpg" alt="">
+            </div>
+            <div class="content">
+                <a href="#">
+                    <span class="title">
+                      Sports
+                      <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 48 48"><circle cx="28" cy="9" r="5" fill="#ff9800"/><path fill="#00796b" d="m29 27.3l-9.2-4.1c-1-.5-1.5 1-2 2s-4.1 7.2-3.8 8.3c.3.9 1.1 1.4 1.9 1.4c.2 0 .4 0 .6-.1L28.8 31c.8-.2 1.4-1 1.4-1.8s-.5-1.6-1.2-1.9"/><path fill="#009688" d="m26.8 15.2l-2.2-1c-1.3-.6-2.9 0-3.5 1.3L9.2 41.1c-.5 1 0 2.2 1 2.7c.3.1.6.2.9.2c.8 0 1.5-.4 1.8-1.1c0 0 9.6-13.3 10.4-14.9s4.9-9.3 4.9-9.3c.5-1.3 0-2.9-1.4-3.5"/><path fill="#ff9800" d="M40.5 15.7c-.7-.8-2-1-2.8-.3l-5 4.2l-6.4-3.5c-1.1-.6-2.6-.4-3.3.9c-.8 1.3-.4 2.9.8 3.4l8.3 3.4c.3.1.6.2.9.2c.5 0 .9-.2 1.3-.5l6-5c.8-.7.9-1.9.2-2.8m-28.8 7.4l3.4-5.1l4.6.6l1.5-3.1c.4-.9 1.2-1.4 2.1-1.5h-9.2c-.7 0-1.3.3-1.7.9l-4 6c-.6.9-.4 2.2.6 2.8c.2.2.6.3 1 .3c.6 0 1.3-.3 1.7-.9"/></svg></span>
+                   </span>
+                </a>
+                <p class="desc">
+                  Tip: Watch the cricket match between India and Australia
+                </p>
+                <svg class="regenarate-btn" onclick="regenerateTip('sports')" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 24 24"><path fill="black" d="M10 11H7.101l.001-.009a4.956 4.956 0 0 1 .752-1.787a5.054 5.054 0 0 1 2.2-1.811c.302-.128.617-.226.938-.291a5.078 5.078 0 0 1 2.018 0a4.978 4.978 0 0 1 2.525 1.361l1.416-1.412a7.036 7.036 0 0 0-2.224-1.501a6.921 6.921 0 0 0-1.315-.408a7.079 7.079 0 0 0-2.819 0a6.94 6.94 0 0 0-1.316.409a7.04 7.04 0 0 0-3.08 2.534a6.978 6.978 0 0 0-1.054 2.505c-.028.135-.043.273-.063.41H2l4 4zm4 2h2.899l-.001.008a4.976 4.976 0 0 1-2.103 3.138a4.943 4.943 0 0 1-1.787.752a5.073 5.073 0 0 1-2.017 0a4.956 4.956 0 0 1-1.787-.752a5.072 5.072 0 0 1-.74-.61L7.05 16.95a7.032 7.032 0 0 0 2.225 1.5c.424.18.867.317 1.315.408a7.07 7.07 0 0 0 2.818 0a7.031 7.031 0 0 0 4.395-2.945a6.974 6.974 0 0 0 1.053-2.503c.027-.135.043-.273.063-.41H22l-4-4z"/></svg>
+               
+            </div>
+        </div>
+         
+           <!-- HEALTH -->
+           <div class="card" id="health-card">
+            <div class="image">
+              <img src="health.jpg" alt="" loading="lazy">
+            </div>
+            <div class="content">
+                <a href="#">
+                    <span class="title">
+                      Health
+                      <svg height="2em" width="2em" mlns="http://www.w3.org/2000/svg" enable-background="new 0 0 48 48" viewBox="0 0 48 48" id="medical-insurance"><path fill="#ccc" d="M24,44c18-9.091,18-18.182,18-34.545C37.197,8.269,24,5,24,5S10.804,8.266,6,9.455C6,25.818,6,34.909,24,44z"></path><path fill="#efefef" d="M38.428,8.572C32.586,7.127,24,5,24,5S10.804,8.266,6,9.455c0,11.218,0.002,19.018,5.802,25.743
+                        c0,0,2.523-6.288,13.09-13.09S38.428,8.572,38.428,8.572z"></path><polygon fill="#fc5696" points="34 20 27 20 27 13 21 13 21 20 14 20 14 26 21 26 21 33 27 33 27 26 34 26"></polygon><path fill="#fc92c3" d="M27,20v-7h-6v7h-7v6h7c0,0,0.517-1.348,2.944-2.944C26.371,21.46,27,20,27,20z"></path><path d="M42.229,8.628c-0.012,0-17.986-4.589-17.999-4.588c-0.189-0.058-0.404-0.017-0.597,0.033L5.753,8.393
+                        C5.335,8.494,5.024,8.872,5.027,9.32C5.11,24.672,6.002,35.67,21.209,43.134c1.363,0.721,2.579,1.15,2.885,1.032
+                        c3.582-0.906,8.002-4.095,10.933-6.713c7.967-6.907,7.98-18.216,7.913-27.903C42.944,9.126,42.659,8.738,42.229,8.628z
+                         M26.391,42.234c-1.124,0.669-2.061,1.288-2.357,1.647c-0.301-0.345-1.175-0.941-2.34-1.621C7.715,34.799,6.842,24.581,6.944,10.074
+                        l17.05-4.032l17.053,4.257C41.323,24.967,40.45,34.233,26.391,42.234z M34.051,18.975l-6.026-0.015
+                        c-0.033-1.459-0.131-5.877-0.131-5.877c-0.002-0.539-0.439-0.98-0.981-0.981c0,0-5.888-0.021-5.888-0.021
+                        c-0.523-0.002-0.95,0.424-0.948,0.948l-0.089,6.053c-1.827,0.079-5.933,0.246-5.961,0.261c-0.41,0.019-0.736,0.359-0.733,0.773
+                        c0,0,0.04,5.772,0.04,5.772c-0.008,0.361,0.289,0.659,0.65,0.65c0.958-0.059,5.901-0.024,6.719-0.248
+                        c-0.263,0.826-0.261,5.631-0.328,6.615c-0.012,0.36,0.286,0.653,0.645,0.645l6.021,0.229c0.433,0.018,0.791-0.343,0.775-0.775
+                        l0.053-6.107c1.346,0.017,6.247,0.077,6.247,0.077c0.525,0.007,0.955-0.42,0.951-0.945c-0.002-0.003-0.031-6.067-0.034-6.07
+                        C35.032,19.418,34.593,18.977,34.051,18.975z M26.958,25.121c-0.477,0.01-0.855,0.405-0.844,0.882l0.137,6.23l-4.601,0.024
+                        c-0.036-1.386-0.118-4.532-0.118-4.532c-0.012-0.776-0.112-1.349-0.244-1.674c0.265-0.252-0.275-0.554-1.911-0.629l-4.719-0.162
+                        l0.159-4.38l6.039-0.081c0.472-0.007,0.862-0.384,0.879-0.861c0-0.013,0.14-4.057,0.205-5.948l4.009,0.06
+                        c0.024,1.428,0.101,5.909,0.101,5.909c0.008,0.767,0.705,1.085,1.39,1c0,0,5.645-0.013,5.645-0.013l0.068,4.134
+                        C31.206,25.092,26.981,25.117,26.958,25.121z"></path></svg>
+                    </span>
+                </a>
+                <p class="desc">
+                  Tip: Drink plenty of water and stay hydrated
+                </p>
+                <svg class="regenarate-btn" onclick="regenerateTip('health')" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 24 24"><path fill="black" d="M10 11H7.101l.001-.009a4.956 4.956 0 0 1 .752-1.787a5.054 5.054 0 0 1 2.2-1.811c.302-.128.617-.226.938-.291a5.078 5.078 0 0 1 2.018 0a4.978 4.978 0 0 1 2.525 1.361l1.416-1.412a7.036 7.036 0 0 0-2.224-1.501a6.921 6.921 0 0 0-1.315-.408a7.079 7.079 0 0 0-2.819 0a6.94 6.94 0 0 0-1.316.409a7.04 7.04 0 0 0-3.08 2.534a6.978 6.978 0 0 0-1.054 2.505c-.028.135-.043.273-.063.41H2l4 4zm4 2h2.899l-.001.008a4.976 4.976 0 0 1-2.103 3.138a4.943 4.943 0 0 1-1.787.752a5.073 5.073 0 0 1-2.017 0a4.956 4.956 0 0 1-1.787-.752a5.072 5.072 0 0 1-.74-.61L7.05 16.95a7.032 7.032 0 0 0 2.225 1.5c.424.18.867.317 1.315.408a7.07 7.07 0 0 0 2.818 0a7.031 7.031 0 0 0 4.395-2.945a6.974 6.974 0 0 0 1.053-2.503c.027-.135.043-.273.063-.41H22l-4-4z"/></svg>
+               
+            </div>
+        </div>
+         
+      <% } %>
+    
+      </div>
+    <div class="div-for-search">
+      <input type="text" class="search-bar" placeholder="Enter a keyword to search news">
+      <button class="search-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 26 26"><path fill="currentColor" d="M10 .188A9.812 9.812 0 0 0 .187 10A9.812 9.812 0 0 0 10 19.813c2.29 0 4.393-.811 6.063-2.125l.875.875a1.845 1.845 0 0 0 .343 2.156l4.594 4.625c.713.714 1.88.714 2.594 0l.875-.875a1.84 1.84 0 0 0 0-2.594l-4.625-4.594a1.824 1.824 0 0 0-2.157-.312l-.875-.875A9.812 9.812 0 0 0 10 .188M10 2a8 8 0 1 1 0 16a8 8 0 0 1 0-16M4.937 7.469a5.446 5.446 0 0 0-.812 2.875a5.46 5.46 0 0 0 5.469 5.469a5.516 5.516 0 0 0 3.156-1a7.166 7.166 0 0 1-.75.03a7.045 7.045 0 0 1-7.063-7.062c0-.104-.005-.208 0-.312"/></svg>
+      </button>
+    </div>
+    <div class="section-two">
+      <!-- <div class="div">
+        <div class="news">
+          <img src="news-image-1.jpg" class="news-image">
+          <div class="news-headline">India vs Australia: Shubman Gill shines as India win the series</div>
+        </div>
+      </div>
+      <div class="div">
+        <div class="news">
+          <img src="news-image-2.jpg" class="news-image">
+          <div class="news-headline">Parner: A hidden gem of culture and heritage</div>
+        </div>
+      </div>
+      <div class="div">
+        <div class="news">
+          <img src="news-image-3.jpg" class="news-image">
+          <div class="news-headline">How to stay healthy and fit in the summer</div>
+        </div>
+      </div>
+      <div class="div">
+        <div class="news">
+          <img src="news-image-4.jpg" class="news-image">
+          <div class="news-headline">The best places to travel in India in 2024</div>
+        </div>
+      </div>
+      <div class="div">
+        <div class="news">
+          <img src="news-image-5.jpg" class="news-image">
+          <div class="news-headline">The latest fashion trends for men and women</div>
+        </div>
+      </div> -->
+    </div>
+    <!-- <div class="chat-section">
+      <input type="text" class="chat-input" placeholder="Type here to chat with Copilot">
+    </div> -->
+  </div>
+            </div>
+                </main>
+
+<script rel="preconnect" rel="preload" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<!--Here-->
+
+<!-- Scroll Trigger is needed for Scroll Effects -->
+<script rel="preconnect"  rel="preload" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+<!-- Three.js is needed for 3d Effects -->
+<!--next-->
+<script src="/scripts/three.min.js"></script>
+
+<!-- ControlKit is needed for Debug Panel -->
+<!-- <script src="controlKit.min.js"></script> -->
+
+<script src="https://cdn.jsdelivr.net/gh/automat/controlkit.js@master/bin/controlKit.min.js"></script>
+
+<!--end of shery js-->
+
+
+  
+    <script rel="dns-prefetch" rel="preload" src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.min.js"></script>
+   
+  <!--Recommended-->  <script  type="text/javascript"  src="https://unpkg.com/sheryjs/dist/Shery.js"></script> <!-- Recommended -->
+    
+    <script>
+    Shery.mouseFollower({
+  //Parameters are optional.
+        skew: true,
+        ease: "cubic-bezier(0.23, 1, 0.320, 1)",
+        duration: 1,
+});
+
+gsap.set(".card", { opacity: 0, x: "-50%" });
+
+gsap.utils.toArray(".card").forEach((card, index) => {
+  gsap.to(card, {
+    opacity: 1,
+    x: "0%",
+    duration: 0.8,
+    delay: index * 0.6, // Delay each card's animation by 0.5 seconds
+    ease: "power2.out"
+  });
+});
+
+// document.querySelector('.weather-container').style.overflowY = 'scroll';
+const hamburger = document.querySelector('.hamburger-menu');
+const links = document.querySelector('nav ul');
+
+// Toggle the visibility of the navigation links when the hamburger menu is clicked
+hamburger.addEventListener('click', (e) => {
+
+  links.style.display = links.style.display === 'flex' ? 'none' : 'flex'
+});
+
+// Regenerate
+
+function regenerateTip(category) {
+    const desc = document.querySelector(`#${category}-card .desc`);
+    desc.innerText = '';
+    desc.classList.add('loading');
+
+    fetch(`/generateTip/${category}`)
+        .then(response => response.json())
+        .then(data => {
+            desc.classList.remove('loading');
+            document.querySelector(`#${category}-card .image img`).src = data.imageUrl;
+            document.querySelector(`#${category}-card .desc`).innerText = `Tip: ${data.tipText}`;
+            scroll.update();
+        }).catch(error => console.error('Error:', error));
+}
+
+</script>
+<script src="/scripts/act.js" type="module"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/openai/src/openai.js"></script>
+
+  <!-- <script src="https://cdn.jsdelivr.net/npm/openai/src/openai.js" defer></script> -->
+  <script type="module" src="/scripts/module.mjs"></script>
+
+<!-- <script src="app.js" type="module"></script>      -->
+</body>
+</html>
+
