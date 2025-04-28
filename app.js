@@ -68,16 +68,20 @@ app.use((req, res, next) => {
             "connect-src 'self' *"
         );
     } else {
-        // Production security headers
+        // Production security headers - Updated for Vercel deployment
         res.setHeader(
             'Content-Security-Policy',
-            "default-src 'self' https://cdn.jsdelivr.net; " +
-            "style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://fonts.googleapis.com https://unpkg.com; " +
-            "style-src-elem 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://fonts.googleapis.com https://unpkg.com; " +
-            "font-src 'self' https://fonts.gstatic.com https://fonts.googleapis.com data:; " +
+            "default-src 'self' https: data:; " +
+            "style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://fonts.googleapis.com https://unpkg.com https://cdn.jsdelivr.net/npm/antd/ https://cdn.jsdelivr.net/npm/antd/dist/; " +
+            "style-src-elem 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://fonts.googleapis.com https://unpkg.com https://cdn.jsdelivr.net/npm/antd/ https://cdn.jsdelivr.net/npm/antd/dist/; " +
+            "font-src 'self' https://fonts.gstatic.com https://fonts.googleapis.com data: https:; " +
             "img-src 'self' data: https: http:; " +
-            "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://unpkg.com; " +
-            "connect-src 'self' https://*"
+            "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://unpkg.com https://cdn.jsdelivr.net/npm/antd/; " +
+            "connect-src 'self' https://* http://*; " +
+            "frame-src 'self' https:; " +
+            "media-src 'self' https:; " +
+            "object-src 'none'; " +
+            "base-uri 'self';"
         );
     }
     
