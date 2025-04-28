@@ -27,8 +27,18 @@ logs
 tmp/
 temp/
 TEMPORARY_FILES/
+TEMPORARY_FILES/**/*
 
 # Build files
 dist/
 build/
 
+# Specific problematic files
+public/scripts/chat.js
+**/bundle.js
+**/tips.js
+
+# Specific problematic folders
+**/node_modules
+**/dist
+**/build
