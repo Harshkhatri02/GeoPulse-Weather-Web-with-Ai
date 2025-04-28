@@ -2,12 +2,14 @@
   "name": "geopulse",
   "version": "1.0.0",
   "type": "module",
+  "main": "app.js",
   "engines": {
     "node": ">=18.x"
   },
   "scripts": {
     "start": "node app.js",
-    "build": "npm install --verbose"
+    "build": "npm install",
+    "vercel-build": "npm install ejs@3.1.10 express express-session mongoose dotenv axios openai crypto"
   },
   "dependencies": {
     "axios": "^1.6.7",
