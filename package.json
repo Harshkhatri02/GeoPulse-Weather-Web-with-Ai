@@ -8,8 +8,8 @@
   },
   "scripts": {
     "start": "node app.js",
-    "build": "npm install",
-    "vercel-build": "npm install && npm install ejs@3.1.10 express@4.19.2 express-session@1.18.0 mongoose@8.2.1 --save"
+    "build": "node build.js",
+    "vercel-build": "node build.js"
   },
   "dependencies": {
     "axios": "^1.6.7",
