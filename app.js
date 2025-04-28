@@ -50,6 +50,15 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 //Express  App is created 
 const app = express();
 
+// Add security headers
+app.use((req, res, next) => {
+    res.setHeader('Content-Security-Policy', "default-src 'self'; style-src 'self' 'unsafe-inline' https: https://cdn.jsdelivr.net; style-src-elem 'self' 'unsafe-inline' https: https://cdn.jsdelivr.net; font-src 'self' https: data:; img-src 'self' data: https: http:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https: https://cdn.jsdelivr.net; connect-src 'self' https://*;");
+    res.setHeader('X-Frame-Options', 'DENY');
+    res.setHeader('X-Content-Type-Options', 'nosniff');
+    res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+    next();
+});
+
 // Add CORS middleware
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', 'http://localhost:3000');

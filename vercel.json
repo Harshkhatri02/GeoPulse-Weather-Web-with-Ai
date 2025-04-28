@@ -9,14 +9,7 @@
     "routes": [
         {
             "src": "/(.*)",
-            "dest": "app.js",
-            "headers": {
-                "Content-Security-Policy": "default-src 'self' https://cdn.jsdelivr.net; connect-src 'self' https://*; style-src 'self' 'unsafe-inline' https: https://cdn.jsdelivr.net https://cdn.jsdelivr.net/npm/antd/; style-src-elem 'self' 'unsafe-inline' https: https://cdn.jsdelivr.net https://cdn.jsdelivr.net/npm/antd/; font-src 'self' https: data:; img-src 'self' data: https: http:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https: https://cdn.jsdelivr.net",
-                "X-Frame-Options": "DENY",
-                "X-Content-Type-Options": "nosniff",
-                "Referrer-Policy": "strict-origin-when-cross-origin",
-                "Permissions-Policy": "camera=(), microphone=(), geolocation=()"
-            }
+            "dest": "app.js"
         }
     ]
 } 
