@@ -1,6 +1,4 @@
-// mongodb+srv://harshkhatri682:<password>@userinfo.2nbvncq.mongodb.net/?retryWrites=true&w=majority&appName=UserInfo
-
-//Framework for nodejs (Handling requests and response)
+// Import required modules and set up Express application
 import express from 'express';
 import { fileURLToPath } from 'url';
 import path from 'path';    
@@ -419,21 +417,16 @@ app.get('/generateTip/:category', async (req, res) => {
     }
 });
 
-// API Keys endpoint
+// API Keys endpoint - Only return necessary keys with authentication check
 app.get('/api/keys', (req, res) => {
-    if (req.session && (req.session.loggedIn || req.session.signedUp)) {
-        res.json({
-            weatherApiKey: process.env.WEATHER_API_KEY,
-            pixabayApiKey: process.env.PIXABAY_API_KEY
-        });
-    } else {
-        res.status(401).json({ error: 'Not authenticated' });
+    if (!req.session.loggedIn) {
+        return res.status(401).json({ error: 'Authentication required' });
     }
-});
-
-// Add route to serve the News API key
-app.get('/api/news-key', (req, res) => {
-    res.json({ key: process.env.NEWS_API_KEY });
+    // Only return keys that are actually needed on the client side
+    res.json({
+        weatherApiKey: process.env.WEATHER_API_KEY,
+        pixabayApiKey: process.env.PIXABAY_API_KEY
+    });
 });
 
 //PORT 

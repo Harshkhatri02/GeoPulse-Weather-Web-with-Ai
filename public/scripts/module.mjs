@@ -120,9 +120,8 @@ if(category=='travel'){
     });
 
     //Using the summarized text as KEYWORD for requesting images
-    // https://api.unsplash.com/photos/?client_id=YOUR_ACCESS_KEY
     const images = await Promise.all(summarizedTips.map(summary => {
-      return axios.get('https://api.unsplash.com/search/photos/', {
+      return axios.get('https://api.unsplash.com/photos/', {
         headers: {
             Authorization: `Client-ID ${unsplashApiKey}`,
         },
