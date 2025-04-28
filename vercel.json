@@ -1,8 +1,11 @@
 {
     "version": 2,
+    "buildCommand": "npm install",
+    "installCommand": "npm install",
+    "outputDirectory": ".",
     "builds": [
         {
-            "src": "package.json",
+            "src": "app.js",
             "use": "@vercel/node"
         }
     ],

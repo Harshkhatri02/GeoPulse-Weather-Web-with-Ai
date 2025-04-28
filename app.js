@@ -1,4 +1,13 @@
 // Import required modules and set up Express application
+try {
+  // Ensure EJS is installed
+  import('./install-deps.js').catch(err => {
+    console.error('Error loading install-deps.js:', err);
+  });
+} catch (error) {
+  console.error('Error importing install-deps.js:', error);
+}
+
 import express from 'express';
 import { fileURLToPath } from 'url';
 import path from 'path';    
