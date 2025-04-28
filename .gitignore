@@ -26,4 +26,9 @@ logs
 # Temporary files
 tmp/
 temp/
-TEMPORARY_FILES/ 
+TEMPORARY_FILES/
+
+# Build files
+dist/
+build/
+
