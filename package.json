@@ -8,14 +8,14 @@
   },
   "scripts": {
     "start": "node app.js",
-    "build": "node build.js",
-    "vercel-build": "node build.js"
+    "build": "npm ci",
+    "vercel-build": "npm ci"
   },
   "dependencies": {
     "axios": "^1.6.7",
     "crypto": "^1.0.1",
     "dotenv": "^16.5.0",
-    "ejs": "^3.1.10",
+    "ejs": "3.1.10",
     "express": "^4.19.2",
     "express-session": "^1.18.0",
     "mongoose": "^8.2.1",

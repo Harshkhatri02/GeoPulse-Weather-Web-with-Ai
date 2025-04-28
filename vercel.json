@@ -8,15 +8,11 @@
             "src": "app.js",
             "use": "@vercel/node",
             "config": {
-                "includeFiles": ["views/**", "public/**"]
+                "includeFiles": ["views/**"]
             }
         }
     ],
     "routes": [
-        {
-            "src": "/(.+\\.ejs)",
-            "dest": "/views/$1"
-        },
         {
             "src": "/(.*)",
             "dest": "/app.js"
