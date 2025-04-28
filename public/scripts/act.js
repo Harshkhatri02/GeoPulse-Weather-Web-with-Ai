@@ -101,7 +101,7 @@ const createNewsDiv = (article) => {
 };
 
 // Initialize LocomotiveScroll
-const scroll = new LocomotiveScroll({
+window.locomotiveScroll = new LocomotiveScroll({
   el: document.querySelector('.weather-container'),
   smooth: true,
   scroll: {
@@ -109,6 +109,9 @@ const scroll = new LocomotiveScroll({
     overflowX: 'auto'
   }
 });
+
+// Use the globally accessible variable
+const scroll = window.locomotiveScroll;
 
 // Display news articles in section-two
 const displayNews = (articles = []) => {
@@ -121,6 +124,9 @@ const displayNews = (articles = []) => {
             section.appendChild(newsDiv);
         }
     });
+    
+    // Hide document scrollbar when locomotive scroll updates
+    document.body.style.overflow = 'hidden';
     scroll.update();
 };
 

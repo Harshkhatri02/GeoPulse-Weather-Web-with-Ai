@@ -35,6 +35,7 @@
 
         body{
             background-color:var(--body-color-);
+            overflow: hidden;
         }
 *{
   font-display: swap;
@@ -82,8 +83,8 @@ html,body{
     height: 100% auto;
     width: 100%;
     font-family: 'Roboto Slab', serif;
-    
-  }
+    overflow: hidden;
+}
 h2,h3{
     font-family: 'Montserrat','sans-serif';
 }  
@@ -1029,17 +1030,14 @@ gsap.utils.toArray(".card").forEach((card, index) => {
 // Initialize LocomotiveScroll for the tips section
 let scroll = null;
 try {
-  scroll = new LocomotiveScroll({
-    el: document.querySelector('.weather-container'),
-    smooth: true,
-    scroll: {
-      overflowY: 'auto',
-      overflowX: 'auto'
-    }
-  });
+  // The scroll instance is already initialized in act.js and available as window.locomotiveScroll
+  console.log('Using LocomotiveScroll from act.js');
+  scroll = window.locomotiveScroll;
 } catch (error) {
-  console.error('Error initializing LocomotiveScroll:', error);
+  console.error('Error with LocomotiveScroll:', error);
 }
+
+// Ensure we're working with the same scroll instance for regenerateTip
 
 // document.querySelector('.weather-container').style.overflowY = 'scroll';
 const hamburger = document.querySelector('.hamburger-menu');
@@ -1078,10 +1076,10 @@ function regenerateTip(category) {
                 console.warn(`API Error: ${data.error}`);
             }
             
-            // Check if scroll exists and has update method before calling it
-            if (typeof scroll !== 'undefined' && scroll && typeof scroll.update === 'function') {
+            // Use the global locomotiveScroll instance
+            if (window.locomotiveScroll && typeof window.locomotiveScroll.update === 'function') {
                 try {
-                    scroll.update();
+                    window.locomotiveScroll.update();
                 } catch (scrollError) {
                     console.warn('Error updating scroll:', scrollError);
                 }
