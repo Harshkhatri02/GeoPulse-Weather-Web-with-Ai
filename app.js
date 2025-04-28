@@ -405,15 +405,38 @@ app.get('/generateTip/:category', async (req, res) => {
             loc="Pune";
         }
         // console.log("Final location of user",loc);
-        const result = await generateTextAndImage(req.params.category,loc);
-
-        res.json({
-            imageUrl: result.imageUrl,
-            tipText: result.tipText
-        });
+        
+        try {
+            const result = await generateTextAndImage(req.params.category,loc);
+            res.json({
+                imageUrl: result.imageUrl,
+                tipText: result.tipText
+            });
+        } catch (apiError) {
+            console.error("Error generating text and image:", apiError);
+            
+            // Send a proper error response with a status code
+            if (apiError.status === 429) {
+                return res.status(429).json({ 
+                    error: "API rate limit exceeded. Please try again later.",
+                    imageUrl: "/my_img/cloud.jpg", // Fallback image
+                    tipText: "Unable to generate tip due to API limits. Please try again later."
+                });
+            } else {
+                return res.status(500).json({ 
+                    error: "An error occurred while generating content",
+                    imageUrl: "/my_img/cloud.jpg", // Fallback image
+                    tipText: "Unable to generate tip at this time. Please try again later."
+                });
+            }
+        }
     } catch (error) {
-        console.error("Error generating text and image:", error);
-        res.status(500).json({ error: "An error occurred while generating text and image" });
+        console.error("Server error:", error);
+        res.status(500).json({ 
+            error: "An error occurred on the server",
+            imageUrl: "/my_img/cloud.jpg", // Fallback image
+            tipText: "Server error. Please try again later."
+        });
     }
 });
 
@@ -426,6 +449,14 @@ app.get('/api/keys', (req, res) => {
     res.json({
         weatherApiKey: process.env.WEATHER_API_KEY,
         pixabayApiKey: process.env.PIXABAY_API_KEY
+    });
+});
+
+// News API Key endpoint
+app.get('/api/news-key', (req, res) => {
+    // No authentication check for news API to keep it working as before
+    res.json({
+        key: process.env.NEWS_API_KEY
     });
 });
 

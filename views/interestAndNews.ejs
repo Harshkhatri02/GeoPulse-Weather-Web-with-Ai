@@ -1026,6 +1026,21 @@ gsap.utils.toArray(".card").forEach((card, index) => {
   });
 });
 
+// Initialize LocomotiveScroll for the tips section
+let scroll = null;
+try {
+  scroll = new LocomotiveScroll({
+    el: document.querySelector('.weather-container'),
+    smooth: true,
+    scroll: {
+      overflowY: 'auto',
+      overflowX: 'auto'
+    }
+  });
+} catch (error) {
+  console.error('Error initializing LocomotiveScroll:', error);
+}
+
 // document.querySelector('.weather-container').style.overflowY = 'scroll';
 const hamburger = document.querySelector('.hamburger-menu');
 const links = document.querySelector('nav ul');
@@ -1040,6 +1055,7 @@ hamburger.addEventListener('click', (e) => {
 
 function regenerateTip(category) {
     const desc = document.querySelector(`#${category}-card .desc`);
+    const img = document.querySelector(`#${category}-card .image img`);
     desc.innerText = '';
     desc.classList.add('loading');
 
@@ -1047,10 +1063,35 @@ function regenerateTip(category) {
         .then(response => response.json())
         .then(data => {
             desc.classList.remove('loading');
-            document.querySelector(`#${category}-card .image img`).src = data.imageUrl;
-            document.querySelector(`#${category}-card .desc`).innerText = `Tip: ${data.tipText}`;
-            scroll.update();
-        }).catch(error => console.error('Error:', error));
+            
+            // Update the image and tip text with either the actual data or the fallback data
+            if (data.imageUrl) {
+                img.src = data.imageUrl;
+            }
+            
+            if (data.tipText) {
+                desc.innerText = `Tip: ${data.tipText}`;
+            }
+            
+            // If there was an error, log it but we still displayed the fallback content
+            if (data.error) {
+                console.warn(`API Error: ${data.error}`);
+            }
+            
+            // Check if scroll exists and has update method before calling it
+            if (typeof scroll !== 'undefined' && scroll && typeof scroll.update === 'function') {
+                try {
+                    scroll.update();
+                } catch (scrollError) {
+                    console.warn('Error updating scroll:', scrollError);
+                }
+            }
+        })
+        .catch(error => {
+            console.error('Network Error:', error);
+            desc.classList.remove('loading');
+            desc.innerText = "Connection error. Please try again later.";
+        });
 }
 
 </script>
