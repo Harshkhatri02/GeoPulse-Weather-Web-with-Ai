@@ -52,17 +52,36 @@ const app = express();
 
 // Add security headers
 app.use((req, res, next) => {
-    // More permissive CSP that specifically allows antd CDN
-    res.setHeader(
-        'Content-Security-Policy',
-        "default-src 'self' https://cdn.jsdelivr.net; " +
-        "style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdn.jsdelivr.net/npm/antd/ https://cdn.jsdelivr.net/npm/antd/dist/; " +
-        "style-src-elem 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdn.jsdelivr.net/npm/antd/ https://cdn.jsdelivr.net/npm/antd/dist/; " +
-        "font-src 'self' https: data:; " +
-        "img-src 'self' data: https: http:; " +
-        "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net; " +
-        "connect-src 'self' https://*"
-    );
+    // Check if we're in development mode
+    const isDevelopment = process.env.NODE_ENV === 'development' || !process.env.NODE_ENV;
+
+    if (isDevelopment) {
+        // More permissive headers for local development
+        res.setHeader(
+            'Content-Security-Policy',
+            "default-src 'self' * data: 'unsafe-inline' 'unsafe-eval'; " +
+            "style-src 'self' 'unsafe-inline' * https: http:; " +
+            "style-src-elem 'self' 'unsafe-inline' * https: http:; " +
+            "font-src 'self' * data: https: http:; " +
+            "img-src 'self' * data: https: http:; " +
+            "script-src 'self' * 'unsafe-inline' 'unsafe-eval' https: http:; " +
+            "connect-src 'self' *"
+        );
+    } else {
+        // Production security headers
+        res.setHeader(
+            'Content-Security-Policy',
+            "default-src 'self' https://cdn.jsdelivr.net; " +
+            "style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://fonts.googleapis.com https://unpkg.com; " +
+            "style-src-elem 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://fonts.googleapis.com https://unpkg.com; " +
+            "font-src 'self' https://fonts.gstatic.com https://fonts.googleapis.com data:; " +
+            "img-src 'self' data: https: http:; " +
+            "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://unpkg.com; " +
+            "connect-src 'self' https://*"
+        );
+    }
+    
+    // Common headers for both environments
     res.setHeader('X-Frame-Options', 'DENY');
     res.setHeader('X-Content-Type-Options', 'nosniff');
     res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
