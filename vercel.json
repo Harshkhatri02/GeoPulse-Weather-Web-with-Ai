@@ -21,27 +21,75 @@
       },
       {
         "src": "/scripts/(.*)",
-        "dest": "/public/scripts/$1"
+        "dest": "/public/scripts/$1",
+        "headers": {
+          "Content-Type": "application/javascript",
+          "Cache-Control": "public, max-age=31536000, immutable"
+        }
+      },
+      {
+        "src": "/api/(.*)",
+        "dest": "/app.js"
       },
       {
         "src": "/weatherDashboardImg/(.*)",
-        "dest": "/public/weatherDashboardImg/$1"
+        "dest": "/public/weatherDashboardImg/$1",
+        "headers": {
+          "Cache-Control": "public, max-age=31536000, immutable"
+        }
       },
       {
         "src": "/my_img/(.*)",
-        "dest": "/public/my_img/$1"
+        "dest": "/public/my_img/$1",
+        "headers": {
+          "Cache-Control": "public, max-age=31536000, immutable"
+        }
       },
       {
         "src": "/AboutUsImg/(.*)",
-        "dest": "/public/AboutUsImg/$1"
+        "dest": "/public/AboutUsImg/$1",
+        "headers": {
+          "Cache-Control": "public, max-age=31536000, immutable"
+        }
       },
       {
         "src": "/images/(.*)",
-        "dest": "/public/images/$1"
+        "dest": "/public/images/$1",
+        "headers": {
+          "Cache-Control": "public, max-age=31536000, immutable"
+        }
       },
       {
         "src": "/styles/(.*)",
-        "dest": "/public/styles/$1"
+        "dest": "/public/styles/$1",
+        "headers": {
+          "Content-Type": "text/css",
+          "Cache-Control": "public, max-age=31536000, immutable"
+        }
+      },
+      {
+        "src": "/(.*)\\.js",
+        "dest": "/public/$1.js",
+        "headers": {
+          "Content-Type": "application/javascript",
+          "Cache-Control": "public, max-age=31536000, immutable"
+        }
+      },
+      {
+        "src": "/(.*)\\.css",
+        "dest": "/public/$1.css",
+        "headers": {
+          "Content-Type": "text/css",
+          "Cache-Control": "public, max-age=31536000, immutable"
+        }
+      },
+      {
+        "src": "/(.*)\\.webp",
+        "dest": "/public/$1.webp",
+        "headers": {
+          "Content-Type": "image/webp",
+          "Cache-Control": "public, max-age=31536000, immutable"
+        }
       },
       {
         "handle": "filesystem"
