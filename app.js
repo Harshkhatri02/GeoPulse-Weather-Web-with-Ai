@@ -75,46 +75,54 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 //Express  App is created 
 const app = express();
 
-// Add security headers
+// CSP Middleware
 app.use((req, res, next) => {
-    // Check if we're in development mode
-    const isDevelopment = process.env.NODE_ENV === 'development' || !process.env.NODE_ENV;
+    // Define CSP directives
+    const cspDirectives = {
+        'default-src': ["'self'", 'https:', 'http:', 'data:'],
+        'script-src': [
+            "'self'",
+            "'unsafe-inline'",
+            "'unsafe-eval'",
+            'https://cdnjs.cloudflare.com',
+            'https://cdn.jsdelivr.net',
+            'https://unpkg.com',
+            'https://*.vercel.app',
+            'https://geopulseai.vercel.app'
+        ],
+        'style-src': [
+            "'self'",
+            "'unsafe-inline'",
+            'https://cdnjs.cloudflare.com',
+            'https://cdn.jsdelivr.net',
+            'https://fonts.googleapis.com',
+            'https://unpkg.com',
+            'https://*.vercel.app'
+        ],
+        'img-src': ["'self'", 'data:', 'https:', 'http:'],
+        'font-src': ["'self'", 'data:', 'https:', 'http:', 'https://fonts.gstatic.com'],
+        'connect-src': ["'self'", 'https:', 'http:'],
+        'media-src': ["'self'", 'https:', 'http:'],
+        'object-src': ["'none'"],
+        'base-uri': ["'self'"]
+    };
 
-    if (isDevelopment) {
-        // More permissive headers for local development
-        res.setHeader(
-            'Content-Security-Policy',
-            "default-src 'self' * data: 'unsafe-inline' 'unsafe-eval'; " +
-            "style-src 'self' 'unsafe-inline' * https: http:; " +
-            "style-src-elem 'self' 'unsafe-inline' * https: http:; " +
-            "font-src 'self' * data: https: http:; " +
-            "img-src 'self' * data: https: http:; " +
-            "script-src 'self' * 'unsafe-inline' 'unsafe-eval' https: http:; " +
-            "connect-src 'self' *"
-        );
-    } else {
-        // Production security headers - Updated for Vercel deployment
-        res.setHeader(
-            'Content-Security-Policy',
-            "default-src 'self' https: data:; " +
-            "style-src 'self' 'unsafe-inline' * https: http:; " +
-            "style-src-elem 'self' 'unsafe-inline' * https: http:; " +
-            "font-src 'self' * data: https: http:; " +
-            "img-src 'self' * data: https: http:; " +
-            "script-src 'self' 'unsafe-inline' 'unsafe-eval' * https: http:; " +
-            "script-src-elem 'self' 'unsafe-inline' 'unsafe-eval' * https: http:; " +
-            "connect-src 'self' *"
-        );
-    }
+    // Build CSP string
+    const cspString = Object.entries(cspDirectives)
+        .map(([key, values]) => `${key} ${values.join(' ')}`)
+        .join('; ');
+
+    // Set CSP header
+    res.setHeader('Content-Security-Policy', cspString);
     
-    // Common headers for both environments
-    res.setHeader('X-Frame-Options', 'DENY');
+    // Other security headers
     res.setHeader('X-Content-Type-Options', 'nosniff');
+    res.setHeader('X-Frame-Options', 'DENY');
     res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
     next();
 });
 
-// Update CORS to allow your Vercel domain
+// CORS middleware
 app.use((req, res, next) => {
     const allowedOrigins = ['http://localhost:3000', 'https://geopulseai.vercel.app'];
     const origin = req.headers.origin;
@@ -127,12 +135,13 @@ app.use((req, res, next) => {
     next();
 });
 
-app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'));
-// Set the view engine to ejs
-app.use(express.static('public', {
+// Configure static file serving
+const staticOptions = {
     setHeaders: (res, path) => {
+        // Set correct MIME types
         if (path.endsWith('.js')) {
+            res.setHeader('Content-Type', 'application/javascript; charset=UTF-8');
+        } else if (path.endsWith('.mjs')) {
             res.setHeader('Content-Type', 'application/javascript; charset=UTF-8');
         } else if (path.endsWith('.css')) {
             res.setHeader('Content-Type', 'text/css; charset=UTF-8');
@@ -146,11 +155,22 @@ app.use(express.static('public', {
             res.setHeader('Content-Type', 'image/jpeg');
         }
         
-        // Set caching headers
-        res.setHeader('Cache-Control', 'public, max-age=31536000'); // Cache for 1 year
+        // Add caching headers
+        res.setHeader('Cache-Control', 'public, max-age=31536000');
         res.setHeader('Vary', 'Accept-Encoding');
-    }
-}));
+    },
+    maxAge: '1y',
+    immutable: true
+};
+
+// Serve static files
+app.use(express.static('public', staticOptions));
+
+// Set view engine
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
+
+//Makes the request available in req.body
 app.use(express.json()); // for parsing application/json
 
 //Makes the request available in req.body
