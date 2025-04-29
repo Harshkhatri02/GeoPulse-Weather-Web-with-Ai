@@ -52,7 +52,7 @@ const mongoOptions = {
     serverSelectionTimeoutMS: 30000
 };
 
-mongoose.connect(dbUrl, mongoOptions)
+await mongoose.connect(dbUrl, mongoOptions)
     .then(() => {
         console.log("MongoDB Connected Successfully");
     })
@@ -97,11 +97,12 @@ app.use((req, res, next) => {
         res.setHeader(
             'Content-Security-Policy',
             "default-src 'self' https: data:; " +
-            "style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://fonts.googleapis.com https://unpkg.com https://cdn.jsdelivr.net/npm/antd/ https://cdn.jsdelivr.net/npm/antd/dist/; " +
-            "style-src-elem 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://fonts.googleapis.com https://unpkg.com https://cdn.jsdelivr.net/npm/antd/ https://cdn.jsdelivr.net/npm/antd/dist/; " +
+            "style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://fonts.googleapis.com https://unpkg.com https://cdnjs.cloudflare.com https://*.vercel.app; " +
+            "style-src-elem 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://fonts.googleapis.com https://unpkg.com https://cdnjs.cloudflare.com https://*.vercel.app; " +
             "font-src 'self' https://fonts.gstatic.com https://fonts.googleapis.com data: https:; " +
             "img-src 'self' data: https: http:; " +
-            "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://unpkg.com https://cdn.jsdelivr.net/npm/antd/; " +
+            "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://unpkg.com https://cdnjs.cloudflare.com https://*.vercel.app; " +
+            "script-src-elem 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://unpkg.com https://cdnjs.cloudflare.com https://*.vercel.app; " +
             "connect-src 'self' https://* http://*; " +
             "frame-src 'self' https:; " +
             "media-src 'self' https:; " +
@@ -126,10 +127,16 @@ app.use((req, res, next) => {
     next();
 });
 
+app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 // Set the view engine to ejs
-app.set('view engine', 'ejs');
-app.use(express.static('public'));//Access static files(like js and css) for ouser views set directory for main files
+app.use(express.static('public', {
+    setHeaders: (res, path) => {
+        if (path.endsWith('.js')) {
+            res.setHeader('Content-Type', 'application/javascript');
+        }
+    }
+}));
 app.use(express.json()); // for parsing application/json
 
 //Makes the request available in req.body
