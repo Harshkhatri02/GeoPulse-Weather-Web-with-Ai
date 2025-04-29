@@ -39,11 +39,36 @@ if (missingEnvVars.length > 0) {
     process.exit(1);
 }
 
-mongoose.connect(dbUrl).then(() => {
-    console.log("Database Connected");
-}).catch((err) => {
-    console.log(err);
-});
+// Check if we're in development mode
+const isDevelopment = process.env.NODE_ENV === 'development';
+console.log(`Running in ${isDevelopment ? 'development' : 'production'} mode`);
+console.log(`Attempting to connect to MongoDB at: ${dbUrl.substring(0, dbUrl.indexOf('@') + 1)}[HIDDEN]`);
+
+// MongoDB connection options
+const mongoOptions = {
+    connectTimeoutMS: 30000,
+    socketTimeoutMS: 45000,
+    maxPoolSize: 10,
+    serverSelectionTimeoutMS: 30000
+};
+
+mongoose.connect(dbUrl, mongoOptions)
+    .then(() => {
+        console.log("MongoDB Connected Successfully");
+    })
+    .catch((err) => {
+        console.error(" MongoDB Connection Error:", err.message);
+        if (err.name === 'MongooseServerSelectionError') {
+            console.error("Cannot reach MongoDB server. Please check:");
+            console.error("1. Your internet connection");
+            console.error("2. MongoDB connection string in .env file");
+            console.error("3. MongoDB Atlas cluster status");
+        }
+        if (err.code === 'ENOTFOUND') {
+            console.error("DNS resolution failed. The MongoDB hostname couldn't be found.");
+        }
+        console.error("Full error details:", err);
+    });
 
 //Convert the url imported of app.js to file path to set the views directory for current app
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
