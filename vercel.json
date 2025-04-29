@@ -4,9 +4,36 @@
       {
         "src": "app.js",
         "use": "@vercel/node"
+      },
+      {
+        "src": "public/**",
+        "use": "@vercel/static"
       }
     ],
     "routes": [
+      {
+        "src": "/scripts/(.*)",
+        "dest": "/public/scripts/$1"
+      },
+      {
+        "src": "/weatherDashboardImg/(.*)",
+        "dest": "/public/weatherDashboardImg/$1"
+      },
+      {
+        "src": "/my_img/(.*)",
+        "dest": "/public/my_img/$1"
+      },
+      {
+        "src": "/AboutUsImg/(.*)",
+        "dest": "/public/AboutUsImg/$1"
+      },
+      {
+        "src": "/styles/(.*)",
+        "dest": "/public/styles/$1"
+      },
+      {
+        "handle": "filesystem"
+      },
       {
         "src": "/(.*)",
         "dest": "/app.js"
