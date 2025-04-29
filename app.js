@@ -271,7 +271,7 @@ app.post('/signup', async (req, res) => {
     req.session.email = email;
     await user.save();
     req.session.signedUp = true;
-    res.render('index.ejs', { name: req.body.name, session: req.session,userSavedLocation:req.session.userSavedLocation});
+    res.render('index', { name: req.body.name, session: req.session,userSavedLocation:req.session.userSavedLocation});
 });
 
 app.post('/apply-subscribe', async(req, res) => {
