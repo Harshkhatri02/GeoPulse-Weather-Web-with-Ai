@@ -97,17 +97,13 @@ app.use((req, res, next) => {
         res.setHeader(
             'Content-Security-Policy',
             "default-src 'self' https: data:; " +
-            "style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://fonts.googleapis.com https://unpkg.com https://cdnjs.cloudflare.com https://*.vercel.app; " +
-            "style-src-elem 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://fonts.googleapis.com https://unpkg.com https://cdnjs.cloudflare.com https://*.vercel.app; " +
-            "font-src 'self' https://fonts.gstatic.com https://fonts.googleapis.com data: https:; " +
-            "img-src 'self' data: https: http:; " +
-            "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://unpkg.com https://cdnjs.cloudflare.com https://*.vercel.app; " +
-            "script-src-elem 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://unpkg.com https://cdnjs.cloudflare.com https://*.vercel.app; " +
-            "connect-src 'self' https://* http://*; " +
-            "frame-src 'self' https:; " +
-            "media-src 'self' https:; " +
-            "object-src 'none'; " +
-            "base-uri 'self';"
+            "style-src 'self' 'unsafe-inline' * https: http:; " +
+            "style-src-elem 'self' 'unsafe-inline' * https: http:; " +
+            "font-src 'self' * data: https: http:; " +
+            "img-src 'self' * data: https: http:; " +
+            "script-src 'self' 'unsafe-inline' 'unsafe-eval' * https: http:; " +
+            "script-src-elem 'self' 'unsafe-inline' 'unsafe-eval' * https: http:; " +
+            "connect-src 'self' *"
         );
     }
     
@@ -118,9 +114,13 @@ app.use((req, res, next) => {
     next();
 });
 
-// Add CORS middleware
+// Update CORS to allow your Vercel domain
 app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
+    const allowedOrigins = ['http://localhost:3000', 'https://geopulseai.vercel.app'];
+    const origin = req.headers.origin;
+    if (allowedOrigins.includes(origin)) {
+        res.header('Access-Control-Allow-Origin', origin);
+    }
     res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
     res.header('Access-Control-Allow-Headers', 'Content-Type');
     res.header('Access-Control-Allow-Credentials', 'true');
@@ -133,8 +133,22 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.static('public', {
     setHeaders: (res, path) => {
         if (path.endsWith('.js')) {
-            res.setHeader('Content-Type', 'application/javascript');
+            res.setHeader('Content-Type', 'application/javascript; charset=UTF-8');
+        } else if (path.endsWith('.css')) {
+            res.setHeader('Content-Type', 'text/css; charset=UTF-8');
+        } else if (path.endsWith('.json')) {
+            res.setHeader('Content-Type', 'application/json; charset=UTF-8');
+        } else if (path.endsWith('.webp')) {
+            res.setHeader('Content-Type', 'image/webp');
+        } else if (path.endsWith('.png')) {
+            res.setHeader('Content-Type', 'image/png');
+        } else if (path.endsWith('.jpg') || path.endsWith('.jpeg')) {
+            res.setHeader('Content-Type', 'image/jpeg');
         }
+        
+        // Set caching headers
+        res.setHeader('Cache-Control', 'public, max-age=31536000'); // Cache for 1 year
+        res.setHeader('Vary', 'Accept-Encoding');
     }
 }));
 app.use(express.json()); // for parsing application/json
