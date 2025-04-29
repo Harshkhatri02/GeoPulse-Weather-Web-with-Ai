@@ -12,6 +12,14 @@
     ],
     "routes": [
       {
+        "src": "/favicon.ico",
+        "dest": "/public/logo2.webp"
+      },
+      {
+        "src": "/logo2.webp",
+        "dest": "/public/logo2.webp"
+      },
+      {
         "src": "/scripts/(.*)",
         "dest": "/public/scripts/$1"
       },
@@ -26,6 +34,10 @@
       {
         "src": "/AboutUsImg/(.*)",
         "dest": "/public/AboutUsImg/$1"
+      },
+      {
+        "src": "/images/(.*)",
+        "dest": "/public/images/$1"
       },
       {
         "src": "/styles/(.*)",

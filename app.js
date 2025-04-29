@@ -535,7 +535,17 @@ app.get('/api/keys', (req, res) => {
     if (!req.session.loggedIn) {
         return res.status(401).json({ error: 'Authentication required' });
     }
-    // Only return keys that are actually needed on the client side
+    
+    // Check if we're in production
+    if (process.env.NODE_ENV === 'production') {
+        // In production, keys should be configured in the client-side
+        return res.json({ 
+            isProduction: true,
+            message: 'API keys are configured in production environment'
+        });
+    }
+    
+    // Only return keys in development
     res.json({
         weatherApiKey: process.env.WEATHER_API_KEY,
         pixabayApiKey: process.env.PIXABAY_API_KEY
@@ -544,7 +554,15 @@ app.get('/api/keys', (req, res) => {
 
 // News API Key endpoint
 app.get('/api/news-key', (req, res) => {
-    // No authentication check for news API to keep it working as before
+    // Check if we're in production
+    if (process.env.NODE_ENV === 'production') {
+        // In production, keys should be configured in the client-side
+        return res.json({ 
+            isProduction: true,
+            message: 'API keys are configured in production environment'
+        });
+    }
+    
     res.json({
         key: process.env.NEWS_API_KEY
     });
