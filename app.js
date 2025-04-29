@@ -127,6 +127,8 @@ app.use((req, res, next) => {
 });
 
 app.set('views', path.join(__dirname, 'views'));
+// Set the view engine to ejs
+app.set('view engine', 'ejs');
 app.use(express.static('public'));//Access static files(like js and css) for ouser views set directory for main files
 app.use(express.json()); // for parsing application/json
 
