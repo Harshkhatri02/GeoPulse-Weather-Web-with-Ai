@@ -18,7 +18,7 @@ async function getApiKeys() {
         // Skip API key fetch in production since keys are set in Vercel
         if (process.env.NODE_ENV === 'production'){
             console.log('Production environment detected, skipping API key fetch');
-            return;
+            return undefined;
         }
         
         const response = await fetch('/api/keys');
