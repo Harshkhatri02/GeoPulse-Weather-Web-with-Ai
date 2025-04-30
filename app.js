@@ -532,7 +532,7 @@ app.get('/generateTip/:category', async (req, res) => {
 
 // API Keys endpoint - Only return necessary keys with authentication check
 app.get('/api/keys', (req, res) => {
-    if (!req.session.loggedIn || !req.session.signedUp) {
+    if (!req.session.loggedIn ) {
         return res.status(401).json({ error: 'Authentication required' });
     }
     
