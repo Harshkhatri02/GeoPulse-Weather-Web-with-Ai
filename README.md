@@ -1,6 +1,9 @@
 # GeoPulse - Intelligent Weather Dashboard with Location-Based Updates
 
-[INSERT_BANNER_IMAGE_HERE]
+<div align="center">
+  <img height="150" src="./my_img/logo2.jpg"  />
+</div>
+
 
 ## 🌟 Overview
 
