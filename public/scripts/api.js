@@ -11,13 +11,14 @@
 // API keys storage
 let weatherApiKey = null;
 let pixabayApiKey = null;
+const isProduction = window.location.hostname !== 'localhost';
 
 // Fetch API keys from server
 async function getApiKeys() {
     try {
         // Skip API key fetch in production since keys are set in Vercel
-        if (window.location.hostname !== 'localhost') {
-            console.log('Production environment detected, skipping API key fetch');
+        if (isProduction) {
+            console.log('Production environment detected, using Vercel environment variables');
             return;
         }
         
@@ -50,13 +51,13 @@ const searchSuggestions = document.getElementById('searchSuggestions');
 let timeoutId;
     
 searchInput.addEventListener('input', async (event) => {
-    if (!weatherApiKey) {
-        await getApiKeys(); // Try to get keys if not available
-        if (!weatherApiKey) return; // Exit if still not available
-    }
     const query = event.target.value;
     if (query.length > 0) {
         try {
+            // Don't try to fetch keys in production
+            if (!weatherApiKey && !isProduction) {
+                await getApiKeys();
+            }
             const suggestions = await fetchSuggestions(query);
             renderSuggestions(suggestions);
         } catch (error) {
