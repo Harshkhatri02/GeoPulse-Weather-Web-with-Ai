@@ -16,7 +16,7 @@ let pixabayApiKey = null;
 async function getApiKeys() {
     try {
         // Skip API key fetch in production since keys are set in Vercel
-        if (process.env.NODE_ENV === 'production'){
+        if (window.location.hostname.includes('vercel.app')) {
             console.log('Production environment detected, skipping API key fetch');
             return undefined;
         }
