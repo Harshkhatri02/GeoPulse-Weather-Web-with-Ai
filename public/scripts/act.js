@@ -28,7 +28,7 @@ async function getApiKey() {
 }
 
 // Initialize API key
-await getApiKey();
+// await getApiKey();
 
 // Debounce utility function to limit how often a function is executed
 function debounce(func, wait = 200) {
