@@ -1,101 +1,121 @@
-# GeoPulse - Weather & News Web Application with AI Integration
+# GeoPulse - Intelligent Weather Dashboard with Real-time Updates
 
-GeoPulse is a full-stack web application that provides personalized weather information and news based on user location and interests, enhanced with AI-powered features.
+[INSERT_BANNER_IMAGE_HERE]
 
-![GeoPulse Banner](https://github.com/Harshkhatri02/GeoPulse-Weather-Web-with-Ai/raw/main/public/images/geopulse-banner.png)
+## 🌟 Overview
 
-## ✨ Features
+GeoPulse is a modern, intelligent weather dashboard that provides real-time weather information with an intuitive interface. The application combines weather data visualization with AI-powered features to deliver a comprehensive weather monitoring experience.
 
-- **Location-based Weather Updates**: Real-time weather information based on user's location
-- **Personalized News Feed**: News content filtered by user interests
-- **AI Integration**: AI-powered content generation and recommendations
+## ✨ Key Features
+
+### 🌡️ Advanced Weather Monitoring
+- **Real-time Temperature Display**: Shows current temperature with clear sky conditions
+- **3-Day Forecast**: Provides average temperature predictions for the next three days
+- **Hourly Breakdown**: Detailed hourly temperature forecasts (3 AM to 9 PM)
+- **Current Location Detection**: Automatic location-based weather updates
+
+### 🌍 Environmental Metrics
+- **Air Quality Index (AQI)**: Real-time air quality measurements
+- **Detailed Pollutant Tracking**:
+  - PM2.5 levels monitoring
+  - NO2 concentration tracking
+- **Atmospheric Conditions**:
+  - Humidity percentage
+  - Atmospheric pressure (hPa)
+  - Visibility range (km)
+  - "Feels like" temperature
+
+### 👤 User Experience
+- **Responsive Design**: Fully mobile-responsive interface
+- **Clean UI**: Minimalist design for easy reading
+- **Quick Access**: Important metrics displayed prominently
+- **Location Services**: Automatic location detection and display
+
+### 🔔 Additional Features
 - **User Authentication**: Secure signup/login system
-- **Interest Management**: Users can select and update their topic preferences
-- **Email Subscription**: Automated notifications for weather and news updates
-- **Responsive Design**: Mobile-friendly interface
+- **Personalization**: User preference settings
+- **Email Notifications**: Weather alert subscription system
+- **Cross-platform Compatibility**: Works seamlessly across devices
 
-## 🛠️ Tech Stack
+## 🛠️ Technical Stack
 
-- **Frontend**: EJS, CSS, JavaScript
-- **Backend**: Node.js, Express.js
-- **Database**: MongoDB
-- **APIs**:
-  - Weather API for weather data
-  - News API for current news
-  - OpenAI API for AI-generated content
-  - Pixabay/Unsplash for images
+### Frontend
+- React.js
+- TailwindCSS
+- Chart.js for weather visualizations
 
-## 🚀 Live Demo
+### Backend
+- Node.js
+- Express.js
+- MongoDB for user data storage
 
-Visit the live application [here](https://geopulse-weather-web-with-ai.vercel.app/).
+### APIs & Services
+- Weather API integration
+- Geolocation services
+- Authentication system
+- Email notification service
 
-## 📋 Prerequisites
+## 📸 Screenshots
 
-- Node.js (v18 or higher)
-- MongoDB Atlas account
-- API keys for:
-  - Weather API
-  - News API
-  - OpenAI API (for AI features)
-  - Pixabay/Unsplash (for images)
+[INSERT_WEATHER_DASHBOARD_SCREENSHOT]
+*Weather Dashboard showing real-time metrics*
 
-## 🔧 Environment Variables
+[INSERT_FORECAST_SCREENSHOT]
+*3-Day forecast view with hourly breakdown*
 
-Create a `.env` file in the root directory with the following variables:
+[INSERT_AQI_SCREENSHOT]
+*Air Quality Index and environmental metrics*
 
-```env
-# Database
-MONGODB_URI=your_mongodb_connection_string
+## 🚀 Getting Started
 
-# Server
-PORT=3000
-SESSION_SECRET=your_session_secret
+### Prerequisites
+- Node.js (v14 or higher)
+- MongoDB
+- API keys for weather services
 
-# APIs
-WEATHER_API_KEY=your_weather_api_key
-NEWS_API_KEY=your_news_api_key
-OPENAI_API_KEY=your_openai_api_key
-PIXABAY_API_KEY=your_pixabay_api_key
-UNSPLASH_API_KEY=your_unsplash_api_key
-```
-
-## 📥 Installation
+### Installation
 
 1. Clone the repository:
-```bash
-git clone https://github.com/Harshkhatri02/GeoPulse-Weather-Web-with-Ai.git
-cd GeoPulse-Weather-Web-with-Ai
-```
+\`\`\`bash
+git clone https://github.com/yourusername/geopulse.git
+cd geopulse
+\`\`\`
 
 2. Install dependencies:
-```bash
+\`\`\`bash
 npm install
-```
+\`\`\`
 
-3. Create and configure your `.env` file as described above.
+3. Configure environment variables:
+Create a \`.env\` file with the following:
+\`\`\`env
+WEATHER_API_KEY=your_api_key
+MONGODB_URI=your_mongodb_uri
+JWT_SECRET=your_jwt_secret
+\`\`\`
 
-4. Start the application:
-```bash
-npm start
-```
+4. Start the development server:
+\`\`\`bash
+npm run dev
+\`\`\`
 
-## 🌟 Key Features Explained
+## 🌐 Live Demo
 
-### Weather Tracking
-GeoPulse automatically detects the user's location (with permission) and provides detailed weather information, including temperature, humidity, and forecasts.
+Experience GeoPulse live at: [https://geopulseai.vercel.app/weather-dashboard](https://geopulseai.vercel.app/weather-dashboard)
 
-### Interest-Based News
-Users can select topics they're interested in, and GeoPulse will curate a personalized news feed based on these preferences.
+## 🤝 Contributing
 
-### AI Enhancement
-The application leverages AI to generate personalized content summaries and recommendations based on user preferences and behavior.
+Contributions are welcome! Please feel free to submit a Pull Request.
 
-## 📱 Screenshots
+<!-- ## 📝 License
 
-![Homepage](https://github.com/Harshkhatri02/GeoPulse-Weather-Web-with-Ai/raw/main/public/images/screenshot-home.png)
-![Weather Dashboard](https://github.com/Harshkhatri02/GeoPulse-Weather-Web-with-Ai/raw/main/public/images/screenshot-weather.png)
-![News Feed](https://github.com/Harshkhatri02/GeoPulse-Weather-Web-with-Ai/raw/main/public/images/screenshot-news.png)
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details. -->
 
-## 📝 License
+## 📧 Contact
 
-[MIT](https://choosealicense.com/licenses/mit/) 
+For any queries or support, please reach out to:
+[harshkhatri682@gmail.com]
+
+---
+
+Made with ❤️ by Harsh Khatri
