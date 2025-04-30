@@ -16,7 +16,7 @@ let pixabayApiKey = null;
 async function getApiKeys() {
     try {
         // Skip API key fetch in production since keys are set in Vercel
-        if (window.location.hostname !== 'localhost') {
+        if (process.env.NODE_ENV === 'production'){
             console.log('Production environment detected, skipping API key fetch');
             return;
         }
@@ -50,7 +50,7 @@ const searchSuggestions = document.getElementById('searchSuggestions');
 let timeoutId;
     
 searchInput.addEventListener('input', async (event) => {
-    if (window.location.hostname === 'localhost' && !weatherApiKey) {
+    if (!weatherApiKey) {
 
         await getApiKeys(); // Try to get keys if not available
         if (!weatherApiKey) return; // Exit if still not available
