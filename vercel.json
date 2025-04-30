@@ -33,7 +33,7 @@
       },
       {
         "src": "/api/(.*)",
-        "dest": "/app.js"
+        "dest": "app.js"
       },
       {
         "src": "/weatherDashboardImg/(.*)",
