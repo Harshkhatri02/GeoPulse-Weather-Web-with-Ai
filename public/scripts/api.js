@@ -15,6 +15,12 @@ let pixabayApiKey = null;
 // Fetch API keys from server
 async function getApiKeys() {
     try {
+        // Skip API key fetch in production since keys are set in Vercel
+        if (window.location.hostname !== 'localhost') {
+            console.log('Production environment detected, skipping API key fetch');
+            return;
+        }
+        
         const response = await fetch('/api/keys');
         if (!response.ok) {
             throw new Error('Failed to fetch API keys. Please ensure you are logged in.');
