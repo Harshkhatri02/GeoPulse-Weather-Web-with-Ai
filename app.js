@@ -532,20 +532,11 @@ app.get('/generateTip/:category', async (req, res) => {
 
 // API Keys endpoint - Only return necessary keys with authentication check
 app.get('/api/keys', (req, res) => {
-    if (!req.session.loggedIn ) {
+    if (!req.session.loggedIn && !req.session.signedUp) {
         return res.status(401).json({ error: 'Authentication required' });
     }
     
-    // Check if we're in production
-    if (process.env.NODE_ENV === 'production') {
-        // In production, keys should be configured in the client-side
-        return res.json({ 
-            isProduction: true,
-            message: 'API keys are configured in production environment'
-        });
-    }
-    
-    // Only return keys in development
+    // Always return the keys if user is authenticated
     res.json({
         weatherApiKey: process.env.WEATHER_API_KEY,
         pixabayApiKey: process.env.PIXABAY_API_KEY

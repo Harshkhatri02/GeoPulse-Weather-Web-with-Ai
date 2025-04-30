@@ -15,20 +15,18 @@ let pixabayApiKey = null;
 // Fetch API keys from server
 async function getApiKeys() {
     try {
-        // Skip API key fetch in production since keys are set in Vercel
-        if (window.location.hostname.includes('vercel.app')) {
-            console.log('Production environment detected, skipping API key fetch');
-            return undefined;
-        }
-        
         const response = await fetch('/api/keys');
         if (!response.ok) {
             throw new Error('Failed to fetch API keys. Please ensure you are logged in.');
         }
         const keys = await response.json();
-        weatherApiKey = keys.weatherApiKey;
-        pixabayApiKey = keys.pixabayApiKey;
-        console.log('API keys loaded successfully');
+        
+        // If we're in production, the backend will send the keys directly
+        if (keys.weatherApiKey) {
+            weatherApiKey = keys.weatherApiKey;
+            pixabayApiKey = keys.pixabayApiKey;
+            console.log('API keys loaded successfully');
+        }
     } catch (error) {
         console.error('Error fetching API keys:', error);
         alert('Please log in to access weather information');
