@@ -545,15 +545,18 @@ app.get('/api/keys', (req, res) => {
 
 // News API Key endpoint
 app.get('/api/news-key', (req, res) => {
-    // Check if we're in production
+    if (!req.session.loggedIn && !req.session.signedUp) {
+        return res.status(401).json({ error: 'Authentication required' });
+    }
+    
+    // In production, use environment variables directly
     if (process.env.NODE_ENV === 'production') {
-        // In production, keys should be configured in the client-side
         return res.json({ 
-            isProduction: true,
-            message: 'API keys are configured in production environment'
+            key: process.env.NEWS_API_KEY
         });
     }
     
+    // In development, return the key from .env file
     res.json({
         key: process.env.NEWS_API_KEY
     });

@@ -14,8 +14,16 @@ async function getApiKey() {
     apiKeyPromise = new Promise(async (resolve, reject) => {
         try {
             const response = await fetch('/api/news-key');
+            if (!response.ok) {
+                throw new Error('Failed to fetch API key. Please ensure you are logged in.');
+            }
             const data = await response.json();
-            newsApiKey = data.key;
+            
+            // Handle the API key response
+            if (data.key) {
+                newsApiKey = data.key;
+                console.log('News API key loaded successfully');
+            }
             resolve(newsApiKey);
         } catch (error) {
             console.error('Error fetching API key:', error);
