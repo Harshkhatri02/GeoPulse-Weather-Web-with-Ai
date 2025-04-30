@@ -211,24 +211,32 @@ async function loadingAnimation(){
     });
 }
 async function displayWeaterData(data){
-    await loadingAnimation();
-    //3 days Forecast
-    await forecastUpdates(data.forecast.forecastday);
-    //image and text
-    await textOnImageUpdates(data);
-    //highlights
-    await highlightUpdates(data.current);
-    //Location and Hour
-    await locationUpdates(data.location);
-    //forecast
-    await hourlyUpdates(data.forecast.forecastday[0].hour);
-    
-    //Temporary
-    const pTags = document.querySelectorAll(".time-data>p,.highlight>p,.day>p");
-    
-    pTags.forEach((p)=>{
-        p.style.color = "black";
-    });
+    try {
+        if (!data || !data.forecast || !data.forecast.forecastday) {
+            console.error('Invalid weather data structure:', data);
+            return;
+        }
+        await loadingAnimation();
+        //3 days Forecast
+        await forecastUpdates(data.forecast.forecastday);
+        //image and text
+        await textOnImageUpdates(data);
+        //highlights
+        await highlightUpdates(data.current);
+        //Location and Hour
+        await locationUpdates(data.location);
+        //forecast
+        await hourlyUpdates(data.forecast.forecastday[0].hour);
+        
+        //Temporary
+        const pTags = document.querySelectorAll(".time-data>p,.highlight>p,.day>p");
+        
+        pTags.forEach((p)=>{
+            p.style.color = "black";
+        });
+    } catch (error) {
+        console.error('Error displaying weather data:', error);
+    }
 }                    
     // Function to fetch a random image from Unsplash
     async function fetchBackgroundImage(query,funcName=0) {

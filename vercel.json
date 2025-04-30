@@ -8,6 +8,10 @@
       {
         "src": "public/**",
         "use": "@vercel/static"
+      },
+      {
+        "src": "node_modules/**",
+        "use": "@vercel/static"
       }
     ],
     "routes": [
@@ -90,6 +94,10 @@
           "Content-Type": "image/webp",
           "Cache-Control": "public, max-age=31536000, immutable"
         }
+      },
+      {
+        "src": "/node_modules/(.*)",
+        "dest": "/node_modules/$1"
       },
       {
         "handle": "filesystem"
