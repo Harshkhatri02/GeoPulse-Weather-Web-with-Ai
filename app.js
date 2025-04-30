@@ -545,18 +545,7 @@ app.get('/api/keys', (req, res) => {
 
 // News API Key endpoint
 app.get('/api/news-key', (req, res) => {
-    // if (!req.session.loggedIn && !req.session.signedUp) {
-    //     return res.status(401).json({ error: 'Authentication required' });
-    // }
-    
-    // In production, use environment variables directly
-    if (process.env.NODE_ENV === 'production') {
-        return res.json({ 
-            key: process.env.NEWS_API_KEY
-        });
-    }
-    
-    // In development, return the key from .env file
+    // Always return the key, just like the weather API endpoint
     res.json({
         key: process.env.NEWS_API_KEY
     });
