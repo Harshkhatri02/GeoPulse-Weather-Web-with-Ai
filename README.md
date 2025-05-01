@@ -1,6 +1,9 @@
 # GeoPulse - Intelligent Weather Dashboard with Location-Based Updates
 
-[INSERT_BANNER_IMAGE_HERE]
+<div align="center">
+  <img height="150" src="public/my_img/logo2.jpg"  />
+</div>
+
 
 ## 🌟 Overview
 
@@ -68,13 +71,10 @@ GeoPulse is a modern, intuitive weather dashboard that combines real-time weathe
 
 ## 📸 Screenshots
 
-[INSERT_WEATHER_DASHBOARD_SCREENSHOT]
 *Main weather dashboard showing real-time metrics with dynamic background*
 
-[INSERT_INTERESTS_SCREENSHOT]
 *Personalized interest-based content with regenerative tips*
 
-[INSERT_ENVIRONMENTAL_METRICS_SCREENSHOT]
 *Air Quality Index and detailed environmental metrics panel*
 
 ## 🌟 Unique Features
@@ -110,11 +110,26 @@ npm install
 
 3. Configure environment variables:
 Create a `.env` file with the following:
-```env
-WEATHER_API_KEY=your_api_key
-PIXABAY_API_KEY=your_pixabay_api_key
+```env# MongoDB Connection
 MONGODB_URI=your_mongodb_uri
-JWT_SECRET=your_jwt_secret
+
+# Session Secret
+SESSION_SECRET=your_session_secret
+
+# Server Configuration
+PORT=3000
+
+# Weather API
+WEATHER_API_KEY=your_weather_api_key
+
+# Pixabay API
+PIXABAY_API_KEY=your_pixabay_api_key
+
+# News API
+NEWS_API_KEY=your_news_api_key
+
+# Unsplash API
+UNSPLASH_API_KEY=your_unsplash_api_key
 ```
 
 4. Start the development server:
